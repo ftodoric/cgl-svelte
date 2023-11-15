@@ -8,7 +8,7 @@
   .cell-container {
     width: 10px;
     height: 10px;
-    background-color: red;
+    background-color: gray;
   }
 
   .is-alive {

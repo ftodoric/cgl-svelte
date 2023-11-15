@@ -9,12 +9,14 @@
     aliveMatrixIndices: [
       [0, 0],
       [1, 1],
-      [4, 6],
+      [1, 6],
     ],
   };
 
   const isCellAlive = (rowIndex: number, colIndex: number) => {
-    return initialBoardState.aliveMatrixIndices.includes([rowIndex, colIndex]);
+    return initialBoardState.aliveMatrixIndices.some((cell) => {
+      return cell[0] === rowIndex && cell[1] === colIndex;
+    });
   };
 </script>
 

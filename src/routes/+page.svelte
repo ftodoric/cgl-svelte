@@ -1,6 +1,7 @@
 <script>
   import "../styles/reset.css";
   import "../styles/globals.css";
+  import Cell from "../components/Cell.svelte";
 </script>
 
 <svelte:head>
@@ -11,7 +12,9 @@
   />
 </svelte:head>
 
-<div>Hello world!</div>
+<div>
+  <Cell isAlive={false} />
+</div>
 
 <style>
 </style>

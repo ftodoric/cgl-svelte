@@ -17,6 +17,7 @@
     flex: 10px 0 0;
     height: 10px;
     background-color: #555;
+    background-color: var(--cell-color);
     border-right: 1px solid #888;
     border-bottom: 1px solid #888;
   }

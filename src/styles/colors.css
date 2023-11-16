@@ -1,3 +1,6 @@
 :root {
-  --cell-color: red;
+  /* Game Board Colors */
+  --board-bg: #888;
+  --cell-color-dead: #555;
+  --cell-color-alive: #fff;
 }

@@ -1,36 +1,34 @@
 <script>
+  export let size = 15;
   export let isAlive = false;
-
   export let isFirstRow = false;
   export let isFirstCol = false;
 </script>
 
 <div
-  class:cell-container={true}
-  class:is-alive={isAlive}
-  class:is-first-row={isFirstRow}
-  class:is-first-col={isFirstCol}
+  class="cell-container"
+  class:alive={isAlive}
+  class:first-row={isFirstRow}
+  class:first-col={isFirstCol}
+  style={`flex: ${size}px 0 0; height: ${size}px;`}
 />
 
 <style>
   .cell-container {
-    flex: 10px 0 0;
-    height: 10px;
-    background-color: #555;
-    background-color: var(--cell-color);
-    border-right: 1px solid #888;
-    border-bottom: 1px solid #888;
+    background-color: var(--cell-color-dead);
+    border-right: 1px solid var(--board-bg);
+    border-bottom: 1px solid var(--board-bg);
   }
 
-  .is-alive {
-    background-color: #fff;
+  .alive {
+    background-color: var(--cell-color-alive);
   }
 
-  .is-first-row {
-    border-top: 1px solid #888;
+  .first-row {
+    border-top: 1px solid var(--board-bg);
   }
 
-  .is-first-col {
-    border-left: 1px solid #888;
+  .first-col {
+    border-left: 1px solid var(--board-bg);
   }
 </style>

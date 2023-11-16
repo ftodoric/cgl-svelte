@@ -1,1 +1,1 @@
-export const UPDATE_FREQ = 3; // per second
+export const UPDATE_FREQ = 2; // per second

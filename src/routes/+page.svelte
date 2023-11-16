@@ -99,7 +99,11 @@
       {#each Array(boardState.height).fill(0) as _, rowIndex}
         <div class="board-row">
           {#each Array(boardState.width).fill(0) as _, colIndex}
-            <Cell isAlive={isCellAlive(rowIndex, colIndex)} />
+            <Cell
+              isAlive={isCellAlive(rowIndex, colIndex)}
+              isFirstRow={rowIndex === 0}
+              isFirstCol={colIndex === 0}
+            />
           {/each}
         </div>
       {/each}

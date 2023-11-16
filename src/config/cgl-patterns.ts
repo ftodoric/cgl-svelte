@@ -1,9 +1,8 @@
-import type { LiveIndices } from "./types";
-
-export const glider: LiveIndices = [
-  [1, 1],
-  [2, 2],
-  [2, 3],
-  [3, 1],
-  [3, 2],
+export const glider = [
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 0, 0, 0],
+  [0, 1, 1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
 ];

@@ -1,81 +1,72 @@
 <script lang="ts">
-  import Cell from "../components/Cell.svelte";
-  import { UPDATE_FREQ } from "../config/game";
   import { glider } from "../config/cgl-patterns";
-  import type { BoardState } from "../config/types";
+  import GameBoard from "./Board.svelte";
 
-  const initialBoardState: BoardState = {
-    width: 10,
-    height: 10,
-    aliveCellIndices: glider,
-  };
+  let isRunning = false;
+  let rafId: number;
+  let cells = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 0],
+    [0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+  ];
 
-  let boardState = initialBoardState;
+  const getNextCells = () =>
+    cells.map((row, rowIndex) => {
+      return row.map((cell, colIndex) => {
+        // Determine number of live neighbors
+        let liveNeighbors = 0;
+        for (let i = rowIndex - 1; i <= rowIndex + 1; i++) {
+          for (let j = colIndex - 1; j <= colIndex + 1; j++) {
+            // Current cell is not neighbor
+            if (i === rowIndex && j === colIndex) continue;
 
-  let activeGameLoopId: number;
+            if (cells[i]?.[j]) liveNeighbors++;
+          }
+        }
 
-  const isCellAlive = (rowIndex: number, colIndex: number) => {
-    if (rowIndex < 0 || rowIndex > boardState.height - 1) return false;
-    if (colIndex < 0 || colIndex > boardState.width - 1) return false;
+        // If cell alive
+        if (cell) {
+          if (liveNeighbors === 2 || liveNeighbors === 3) {
+            return 1;
+          }
+        }
+        // If cell dead
+        else {
+          if (liveNeighbors === 3) {
+            return 1;
+          }
+        }
 
-    return boardState.aliveCellIndices.some((cell) => {
-      return cell[0] === rowIndex && cell[1] === colIndex;
-    });
-  };
-
-  const calculateNextBoardState = (boardState: BoardState) => {
-    let nextAliveCellIndices: [number, number][] = [];
-
-    Array(boardState.height)
-      .fill(0)
-      .forEach((_, rowIndex) => {
-        Array(boardState.width)
-          .fill(0)
-          .forEach((_, colIndex) => {
-            // Determine number of live neighbors
-            let liveNeighbors = 0;
-
-            for (let i = rowIndex - 1; i <= rowIndex + 1; i++) {
-              for (let j = colIndex - 1; j <= colIndex + 1; j++) {
-                // Current cell is not neighbor
-                if (i === rowIndex && j === colIndex) continue;
-
-                if (isCellAlive(i, j)) liveNeighbors++;
-              }
-            }
-
-            // If cell alive
-            if (isCellAlive(rowIndex, colIndex)) {
-              if (liveNeighbors === 2 || liveNeighbors === 3) {
-                nextAliveCellIndices.push([rowIndex, colIndex]);
-              }
-            }
-            // If cell dead
-            else {
-              if (liveNeighbors === 3) {
-                nextAliveCellIndices.push([rowIndex, colIndex]);
-              }
-            }
-          });
+        return 0;
       });
-
-    return { ...boardState, aliveCellIndices: nextAliveCellIndices };
-  };
+    });
 
   const handleResume = () => {
-    activeGameLoopId = setInterval(() => {
-      boardState = calculateNextBoardState(boardState);
-    }, (1 / UPDATE_FREQ) * 1000);
+    isRunning = true;
+
+    step();
+  };
+
+  const step = () => {
+    cells = getNextCells();
+
+    if (isRunning)
+      setTimeout(() => {
+        rafId = requestAnimationFrame(step);
+      }, 500);
   };
 
   const handlePause = () => {
-    clearInterval(activeGameLoopId);
+    isRunning = false;
+    cancelAnimationFrame(rafId);
   };
 
-  const handleStop = () => {
+  const handleReset = () => {
     handlePause();
-    // reset game board to initial one
-    boardState = initialBoardState;
+    cells = glider;
   };
 </script>
 
@@ -88,34 +79,18 @@
 </svelte:head>
 
 <div>
-  <button on:click={() => handleResume()}>Play</button>
-  <button on:click={() => handlePause()}>Pause</button>
-  <button on:click={() => handleStop()}>Stop</button>
-
-  <div class="game-board">
-    {#key boardState}
-      {#each Array(boardState.height).fill(0) as _, rowIndex}
-        <div class="board-row">
-          {#each Array(boardState.width).fill(0) as _, colIndex}
-            <Cell
-              isAlive={isCellAlive(rowIndex, colIndex)}
-              isFirstRow={rowIndex === 0}
-              isFirstCol={colIndex === 0}
-            />
-          {/each}
-        </div>
-      {/each}
-    {/key}
+  <div class="controls">
+    <button on:click={() => handleResume()}>Play</button>
+    <button on:click={() => handlePause()}>Pause</button>
+    <button on:click={() => handleReset()}>Stop</button>
   </div>
+
+  <GameBoard {cells} />
 </div>
 
 <style>
-  .game-board {
+  .controls {
     display: flex;
-    flex-direction: column;
-  }
-
-  .board-row {
-    display: flex;
+    justify-content: center;
   }
 </style>

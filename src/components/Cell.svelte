@@ -5,16 +5,19 @@
   export let isFirstCol = false;
 </script>
 
-<div
+<button
   class="cell-container"
   class:alive={isAlive}
   class:first-row={isFirstRow}
   class:first-col={isFirstCol}
   style={`flex: ${size}px 0 0; height: ${size}px;`}
+  on:click
 />
 
 <style>
   .cell-container {
+    border: none;
+
     background-color: var(--cell-color-dead);
     border-right: 1px solid var(--board-bg);
     border-bottom: 1px solid var(--board-bg);

@@ -1,4 +1,4 @@
-import type { BoardMatrix } from "./game.types";
+import type { BoardMatrix } from "./types";
 
 export const glider: BoardMatrix = [
   [0, 0, 0, 0, 0, 0, 0],

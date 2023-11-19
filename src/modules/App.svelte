@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { glider } from "../config/cgl-patterns";
+  import { glider } from "$lib/game/cgl-patterns";
   import Board from "./Board/Board.svelte";
 
   let isRunning = false;

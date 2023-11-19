@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Cell from "../components/Cell.svelte";
+  import Cell from "../../components/Cell.svelte";
 
   export let cells: number[][];
 </script>

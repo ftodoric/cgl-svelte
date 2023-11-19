@@ -1,6 +1,6 @@
 <script lang="ts">
   import { glider } from "../config/cgl-patterns";
-  import GameBoard from "./Board.svelte";
+  import Board from "./Board/Board.svelte";
 
   let isRunning = false;
   let rafId: number;
@@ -85,7 +85,7 @@
     <button on:click={() => handleReset()}>Stop</button>
   </div>
 
-  <GameBoard {cells} />
+  <Board {cells} />
 </div>
 
 <style>

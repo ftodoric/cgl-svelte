@@ -1,22 +1,24 @@
 <script lang="ts">
+  import type { BoardMatrix } from "$lib/game/types";
   import Cell from "../../components/Cell.svelte";
 
-  export let cells: number[][];
+  export let boardMatrix: BoardMatrix;
 </script>
 
 <div class="board-container">
-  {#if cells}
+  {#if boardMatrix}
     <div class="game-board">
-      {#each cells as _, rowIndex}
+      {#each boardMatrix as _, rowIndex}
         <div class="board-row" style="width: calc(7 * 15px);">
-          {#each cells[rowIndex] as cell, colIndex}
+          {#each boardMatrix[rowIndex] as cell, colIndex}
             <Cell
               size={15}
               isAlive={!!cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
               on:click={() => {
-                cells[rowIndex][colIndex] = 1 - cells[rowIndex][colIndex];
+                boardMatrix[rowIndex][colIndex] =
+                  1 - boardMatrix[rowIndex][colIndex];
               }}
             />
           {/each}

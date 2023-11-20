@@ -1,72 +1,46 @@
 <script lang="ts">
   import { glider } from "$lib/game/cgl-patterns";
+  import { getNextBoard } from "$lib/game/mechanics";
+  import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
 
-  let isRunning = false;
-  let rafId: number;
-  let cells = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 1, 1, 0, 0, 0],
-    [0, 1, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
+  // Game structures
+  let isGameRunning = false;
+  let frId: number; // Frame Request ID
+  let boardMatrix: BoardMatrix = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 0, 0],
+    [0, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ];
 
-  const getNextCells = () =>
-    cells.map((row, rowIndex) => {
-      return row.map((cell, colIndex) => {
-        // Determine number of live neighbors
-        let liveNeighbors = 0;
-        for (let i = rowIndex - 1; i <= rowIndex + 1; i++) {
-          for (let j = colIndex - 1; j <= colIndex + 1; j++) {
-            // Current cell is not neighbor
-            if (i === rowIndex && j === colIndex) continue;
+  const step = () => {
+    boardMatrix = getNextBoard(boardMatrix);
 
-            if (cells[i]?.[j]) liveNeighbors++;
-          }
-        }
-
-        // If cell alive
-        if (cell) {
-          if (liveNeighbors === 2 || liveNeighbors === 3) {
-            return 1;
-          }
-        }
-        // If cell dead
-        else {
-          if (liveNeighbors === 3) {
-            return 1;
-          }
-        }
-
-        return 0;
-      });
-    });
+    if (isGameRunning)
+      setTimeout(() => {
+        frId = requestAnimationFrame(step);
+      }, 500);
+  };
 
   const handleResume = () => {
-    isRunning = true;
+    isGameRunning = true;
 
     step();
   };
 
-  const step = () => {
-    cells = getNextCells();
-
-    if (isRunning)
-      setTimeout(() => {
-        rafId = requestAnimationFrame(step);
-      }, 500);
-  };
-
   const handlePause = () => {
-    isRunning = false;
-    cancelAnimationFrame(rafId);
+    isGameRunning = false;
+    cancelAnimationFrame(frId);
   };
 
   const handleReset = () => {
     handlePause();
-    cells = glider;
+    boardMatrix = glider;
   };
 </script>
 
@@ -85,7 +59,7 @@
     <button on:click={() => handleReset()}>Stop</button>
   </div>
 
-  <Board {cells} />
+  <Board {boardMatrix} />
 </div>
 
 <style>

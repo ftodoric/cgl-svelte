@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BoardMatrix } from "$lib/game/types";
-  import Cell from "../../components/Cell.svelte";
+  import Cell from "./Cell.svelte";
 
   export let boardMatrix: BoardMatrix;
 </script>

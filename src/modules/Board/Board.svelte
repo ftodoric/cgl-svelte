@@ -8,17 +8,16 @@
 <div class="board-container">
   {#if boardMatrix}
     <div class="game-board">
-      {#each boardMatrix as _, rowIndex}
+      {#each boardMatrix as row, rowIndex}
         <div class="board-row" style="width: calc(7 * 15px);">
-          {#each boardMatrix[rowIndex] as cell, colIndex}
+          {#each row as cell, colIndex}
             <Cell
               size={15}
               isAlive={!!cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
               on:click={() => {
-                boardMatrix[rowIndex][colIndex] =
-                  1 - boardMatrix[rowIndex][colIndex];
+                cell = 1 - cell; // TODO: Fix same handlers for rows
               }}
             />
           {/each}

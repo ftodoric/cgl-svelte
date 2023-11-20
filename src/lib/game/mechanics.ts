@@ -1,6 +1,6 @@
 import type { BoardMatrix } from "./types";
 
-export const getNextBoard = (boardMatrix: BoardMatrix) =>
+export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
   boardMatrix.map((row, rowIndex) => {
     return row.map((cell, colIndex) => {
       // Determine number of live neighbors

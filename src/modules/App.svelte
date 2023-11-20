@@ -1,36 +1,35 @@
 <script lang="ts">
   import { glider } from "$lib/game/cgl-patterns";
-  import { getNextBoard } from "$lib/game/mechanics";
+  import { getNextBoardMatrix } from "$lib/game/mechanics";
   import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
+
+  // Game config
+  let boardSize: number = 10;
 
   // Game structures
   let isGameRunning = false;
   let frId: number; // Frame Request ID
-  let boardMatrix: BoardMatrix = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 1, 0, 0, 0, 0],
-    [0, 1, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ];
+  let boardMatrix: BoardMatrix;
+  $: boardMatrix = Array(boardSize).fill(Array(boardSize).fill(0));
 
-  const step = () => {
-    boardMatrix = getNextBoard(boardMatrix);
+  // Game iteration
+  const updateBoard = () => {
+    if (!isGameRunning) return;
 
-    if (isGameRunning)
-      setTimeout(() => {
-        frId = requestAnimationFrame(step);
-      }, 500);
+    boardMatrix = getNextBoardMatrix(boardMatrix);
+
+    frId = requestAnimationFrame(updateBoard);
+  };
+
+  // Controls Handlers
+  const handleBoardSizeChange = (e: any) => {
+    boardSize = +e.target.value;
   };
 
   const handleResume = () => {
     isGameRunning = true;
-
-    step();
+    updateBoard();
   };
 
   const handlePause = () => {
@@ -40,7 +39,7 @@
 
   const handleReset = () => {
     handlePause();
-    boardMatrix = glider;
+    boardMatrix = glider; // TODO: Reset on the last position played
   };
 </script>
 
@@ -54,9 +53,10 @@
 
 <div>
   <div class="controls">
+    <input value={boardSize} type="number" on:change={handleBoardSizeChange} />
     <button on:click={() => handleResume()}>Play</button>
     <button on:click={() => handlePause()}>Pause</button>
-    <button on:click={() => handleReset()}>Stop</button>
+    <button on:click={() => handleReset()}>Reset</button>
   </div>
 
   <Board {boardMatrix} />

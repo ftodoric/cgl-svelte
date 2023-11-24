@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { UPDATE_FREQ } from "$lib/game/config";
+  import { DEFAULT_UPDATE_FREQ } from "$lib/game/config";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
   import { getLastSave, saveCurrentConfig } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
@@ -7,7 +7,7 @@
 
   // Game config
   let boardSize: number = 10;
-  let speed: number = UPDATE_FREQ;
+  let speed: number = DEFAULT_UPDATE_FREQ;
   let boardMatrix: BoardMatrix;
   $: boardMatrix = Array.from({ length: boardSize }, () =>
     Array.from({ length: boardSize }, () => false)

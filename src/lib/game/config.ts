@@ -1,1 +1,1 @@
-export const UPDATE_FREQ = 1; // per second
+export const DEFAULT_UPDATE_FREQ = 1; // per second

@@ -91,7 +91,7 @@
 </div>
 
 <style>
-  .controls {
+  .control {
     display: flex;
     justify-content: center;
   }

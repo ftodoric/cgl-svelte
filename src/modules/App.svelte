@@ -18,7 +18,7 @@
   if (save) {
     boardSize = save.boardSize;
     speed = save.speed;
-    boardMatrix = save.boardMatrix;
+    boardMatrix = save.boardMatr;
   }
 
   // Game structures

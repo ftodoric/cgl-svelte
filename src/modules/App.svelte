@@ -8,20 +8,22 @@
   // Game config
   let boardSize: number = 10;
   let speed: number = UPDATE_FREQ;
+  let boardMatrix: BoardMatrix;
+  $: boardMatrix = Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () => false)
+  ); // Recreate board matrix after board size parameter changes
+
   // Get the last save
   const save = getLastSave();
   if (save) {
     boardSize = save.boardSize;
     speed = save.speed;
+    boardMatrix = save.boardMatrix;
   }
 
   // Game structures
   let isGameRunning = false;
   let frId: number; // Frame Request ID
-  let boardMatrix: BoardMatrix;
-  $: boardMatrix = Array.from({ length: boardSize }, () =>
-    Array.from({ length: boardSize }, () => false)
-  ); // Recreate board matrix after board size parameter changes
 
   // Game iteration
   const updateBoard = () => {
@@ -45,7 +47,7 @@
 
   const handleResume = () => {
     // On Play save current config
-    saveCurrentConfig({ boardSize, speed });
+    saveCurrentConfig({ boardSize, speed, boardMatrix });
 
     // Start the game
     isGameRunning = true;
@@ -60,6 +62,11 @@
   const handleReset = () => {
     // Reset the game
     handlePause();
+
+    // Get last board matrix save
+    const save = getLastSave();
+
+    if (save) boardMatrix = save.boardMatrix;
   };
 </script>
 

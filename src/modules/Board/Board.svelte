@@ -13,11 +13,11 @@
           {#each row as cell, colIndex}
             <Cell
               size={15}
-              isAlive={!!cell}
+              isAlive={cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
               on:click={() => {
-                cell = 1 - cell; // TODO: Fix same handlers for rows
+                cell = !cell; // TODO: Fix same handlers for rows
               }}
             />
           {/each}

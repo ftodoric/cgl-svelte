@@ -1,10 +1,10 @@
 import type { BoardMatrix } from "./types";
 
 export const glider: BoardMatrix = [
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 0, 0, 0],
-  [0, 1, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
+  [false, false, false, false, false, false, false],
+  [false, true, false, false, false, false, false],
+  [false, false, true, true, false, false, false],
+  [false, true, true, false, false, false, false],
+  [false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false],
 ];

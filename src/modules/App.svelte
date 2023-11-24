@@ -11,7 +11,7 @@
   let isGameRunning = false;
   let frId: number; // Frame Request ID
   let boardMatrix: BoardMatrix;
-  $: boardMatrix = Array(boardSize).fill(Array(boardSize).fill(0));
+  $: boardMatrix = Array(boardSize).fill(Array(boardSize).fill(false)); // Recreate board matrix after board size parameter changes
 
   // Game iteration
   const updateBoard = () => {
@@ -41,6 +41,12 @@
     handlePause();
     boardMatrix = glider; // TODO: Reset on the last position played
   };
+
+  $: console.log(
+    "%clog | description\n",
+    "color: #0e8dbf; margin-bottom: 5px;",
+    boardMatrix
+  );
 </script>
 
 <svelte:head>
@@ -59,7 +65,7 @@
     <button on:click={() => handleReset()}>Reset</button>
   </div>
 
-  <Board {boardMatrix} />
+  <Board bind:boardMatrix />
 </div>
 
 <style>

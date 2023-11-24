@@ -1,1 +1,1 @@
-export type BoardMatrix = number[][];
+export type BoardMatrix = boolean[][];

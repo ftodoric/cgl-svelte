@@ -17,16 +17,16 @@ export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
       // If cell alive
       if (cell) {
         if (liveNeighbors === 2 || liveNeighbors === 3) {
-          return 1;
+          return true;
         }
       }
       // If cell dead
       else {
         if (liveNeighbors === 3) {
-          return 1;
+          return true;
         }
       }
 
-      return 0;
+      return false;
     });
   });

@@ -1,11 +1,13 @@
 <script lang="ts">
   import { glider } from "$lib/game/cgl-patterns";
+  import { UPDATE_FREQ } from "$lib/game/config";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
   import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
 
   // Game config
   let boardSize: number = 10;
+  let speed: number = UPDATE_FREQ;
 
   // Game structures
   let isGameRunning = false;
@@ -21,12 +23,18 @@
 
     boardMatrix = getNextBoardMatrix(boardMatrix);
 
-    frId = requestAnimationFrame(updateBoard);
+    setTimeout(() => {
+      frId = requestAnimationFrame(updateBoard);
+    }, 1000 / speed); // Game Speed parameter formula
   };
 
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {
     boardSize = +e.target.value;
+  };
+
+  const handleSpeedChange = (e: any) => {
+    speed = +e.target.value;
   };
 
   const handleResume = () => {
@@ -43,12 +51,6 @@
     handlePause();
     boardMatrix = glider; // TODO: Reset on the last position played
   };
-
-  $: console.log(
-    "%clog | description\n",
-    "color: #0e8dbf; margin-bottom: 5px;",
-    boardMatrix
-  );
 </script>
 
 <svelte:head>
@@ -62,6 +64,7 @@
 <div>
   <div class="controls">
     <input value={boardSize} type="number" on:change={handleBoardSizeChange} />
+    <input value={speed} type="number" on:change={handleSpeedChange} />
     <button on:click={() => handleResume()}>Play</button>
     <button on:click={() => handlePause()}>Pause</button>
     <button on:click={() => handleReset()}>Reset</button>

@@ -11,7 +11,9 @@
   let isGameRunning = false;
   let frId: number; // Frame Request ID
   let boardMatrix: BoardMatrix;
-  $: boardMatrix = Array(boardSize).fill(Array(boardSize).fill(false)); // Recreate board matrix after board size parameter changes
+  $: boardMatrix = Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () => false)
+  ); // Recreate board matrix after board size parameter changes
 
   // Game iteration
   const updateBoard = () => {

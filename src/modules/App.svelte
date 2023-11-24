@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { glider } from "$lib/game/cgl-patterns";
   import { UPDATE_FREQ } from "$lib/game/config";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
+  import { getLastSave, saveCurrentConfig } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
 
   // Game config
   let boardSize: number = 10;
   let speed: number = UPDATE_FREQ;
+  // Get the last save
+  const save = getLastSave();
+  if (save) {
+    boardSize = save.boardSize;
+    speed = save.speed;
+  }
 
   // Game structures
   let isGameRunning = false;
@@ -38,6 +44,10 @@
   };
 
   const handleResume = () => {
+    // On Play save current config
+    saveCurrentConfig({ boardSize, speed });
+
+    // Start the game
     isGameRunning = true;
     updateBoard();
   };
@@ -48,8 +58,8 @@
   };
 
   const handleReset = () => {
+    // Reset the game
     handlePause();
-    boardMatrix = glider; // TODO: Reset on the last position played
   };
 </script>
 

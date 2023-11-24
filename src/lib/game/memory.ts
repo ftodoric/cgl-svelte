@@ -2,7 +2,7 @@ import type { BoardMatrix } from "./types";
 
 const saveLSKey = "game:config";
 
-export interface SaveConfig {
+interface SaveConfig {
   boardSize: number;
   speed: number;
   boardMatrix: BoardMatrix;

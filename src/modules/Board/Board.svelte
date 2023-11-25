@@ -16,9 +16,7 @@
               isAlive={cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
-              on:click={() => {
-                cell = !cell; // TODO: Fix same handlers for rows
-              }}
+              on:click={() => (cell = !cell)}
             />
           {/each}
         </div>

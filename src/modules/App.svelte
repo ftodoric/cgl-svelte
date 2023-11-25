@@ -1,17 +1,19 @@
 <script lang="ts">
-  import { DEFAULT_UPDATE_FREQ } from "$lib/game/config";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
-  import { getLastSave, saveCurrentConfig } from "$lib/game/memory";
+  import {
+    getInitialBoardMatrix,
+    getInitialBoardSize,
+    getInitialSpeed,
+    getLastSave,
+    saveCurrentConfig,
+  } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
 
   // Game config
-  let boardSize: number = 10;
-  let speed: number = DEFAULT_UPDATE_FREQ;
-  let boardMatrix: BoardMatrix;
-  $: boardMatrix = Array.from({ length: boardSize }, () =>
-    Array.from({ length: boardSize }, () => false)
-  ); // Recreate board matrix after board size parameter changes
+  let boardSize: number = getInitialBoardSize();
+  let speed: number = getInitialSpeed();
+  let boardMatrix: BoardMatrix = getInitialBoardMatrix();
 
   // Get the last save
   const save = getLastSave();
@@ -39,6 +41,9 @@
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {
     boardSize = +e.target.value;
+    boardMatrix = Array.from({ length: boardSize }, () =>
+      Array.from({ length: boardSize }, () => false)
+    );
   };
 
   const handleSpeedChange = (e: any) => {

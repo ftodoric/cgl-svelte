@@ -45,7 +45,7 @@
     speed = +e.target.value;
   };
 
-  const handleResume = () => {
+  const handlePlay = () => {
     // On Play save current config
     saveCurrentConfig({ boardSize, speed, boardMatrix });
 
@@ -82,8 +82,9 @@
   <div class="controls">
     <input value={boardSize} type="number" on:change={handleBoardSizeChange} />
     <input value={speed} type="number" on:change={handleSpeedChange} />
-    <button on:click={() => handleResume()}>Play</button>
-    <button on:click={() => handlePause()}>Pause</button>
+    <button on:click={() => (isGameRunning ? handlePause() : handlePlay())}
+      >{isGameRunning ? "Pause" : "Play"}</button
+    >
     <button on:click={() => handleReset()}>Reset</button>
   </div>
 

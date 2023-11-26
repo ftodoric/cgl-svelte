@@ -5,6 +5,11 @@ import type { BoardMatrix } from "./types";
  * When loaded into the game, they're centered.
  */
 
+/**
+ * Spaceships
+ *
+ * They represent moving patterns.
+ */
 export const glider: BoardMatrix = [
   [true, false, false],
   [false, true, true],
@@ -16,4 +21,12 @@ export const lwss: BoardMatrix = [
   [true, false, false, false, false],
   [true, false, false, false, true],
   [true, true, true, true, false],
+];
+
+export const mwss: BoardMatrix = [
+  [false, false, false, true, false, false],
+  [false, true, false, false, false, true],
+  [true, false, false, false, false, false],
+  [true, false, false, false, false, true],
+  [true, true, true, true, true, false],
 ];

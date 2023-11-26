@@ -13,6 +13,18 @@ import type { BoardMatrix } from "./types";
 
 export const blinker: BoardMatrix = [[true, true, true]];
 
+export const toad: BoardMatrix = [
+  [false, true, true, true],
+  [true, true, true, false],
+];
+
+export const beacon: BoardMatrix = [
+  [true, true, false, false],
+  [true, false, false, false],
+  [false, false, false, true],
+  [false, false, true, true],
+];
+
 /**
  * Spaceships
  *

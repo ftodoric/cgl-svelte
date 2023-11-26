@@ -23,7 +23,7 @@
     boardMatrix = save.boardMatrix;
   }
 
-  // Game structures
+  // Game activity data
   let isGameRunning = false;
   let frId: number; // Frame Request ID
 
@@ -85,8 +85,18 @@
 
 <div>
   <div class="controls">
-    <input value={boardSize} type="number" on:change={handleBoardSizeChange} />
-    <input value={speed} type="number" on:change={handleSpeedChange} />
+    <input
+      value={boardSize}
+      type="number"
+      on:change={handleBoardSizeChange}
+      disabled={isGameRunning}
+    />
+    <input
+      value={speed}
+      type="number"
+      on:change={handleSpeedChange}
+      disabled={isGameRunning}
+    />
     <button on:click={() => (isGameRunning ? handlePause() : handlePlay())}
       >{isGameRunning ? "Pause" : "Play"}</button
     >

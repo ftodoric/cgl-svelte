@@ -6,9 +6,17 @@ import type { BoardMatrix } from "./types";
  */
 
 /**
+ * Oscillators
+ *
+ * They are stable static patterns.
+ */
+
+export const blinker: BoardMatrix = [[true, true, true]];
+
+/**
  * Spaceships
  *
- * They represent moving patterns.
+ * They represent stable moving patterns.
  */
 export const glider: BoardMatrix = [
   [true, false, false],

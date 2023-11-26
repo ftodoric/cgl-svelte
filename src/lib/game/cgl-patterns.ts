@@ -24,6 +24,7 @@ export const glider: BoardMatrix = [
   [true, true, false],
 ];
 
+// Light-weight Spaceship
 export const lwss: BoardMatrix = [
   [false, true, false, false, true],
   [true, false, false, false, false],
@@ -31,6 +32,7 @@ export const lwss: BoardMatrix = [
   [true, true, true, true, false],
 ];
 
+// Middle-weight Spaceship
 export const mwss: BoardMatrix = [
   [false, false, false, true, false, false],
   [false, true, false, false, false, true],
@@ -39,7 +41,7 @@ export const mwss: BoardMatrix = [
   [true, true, true, true, true, false],
 ];
 
-// Heavyweight Spaceship
+// Heavy-weight Spaceship
 export const hwss: BoardMatrix = [
   [false, false, false, true, true, false, false],
   [false, true, false, false, false, false, true],

@@ -1,4 +1,8 @@
 <script lang="ts">
+  import IconExpand from "$lib/components/Icons/IconExpand.svelte";
+  import IconSpeed from "$lib/components/Icons/IconSpeed.svelte";
+  import IconPlay from "$lib/components/Icons/IconPlay.svelte";
+  import IconReset from "$lib/components/Icons/IconReset.svelte";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
   import {
     getInitialBoardMatrix,
@@ -8,6 +12,7 @@
     saveCurrentConfig,
   } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
+  import { colors } from "../styles/colors";
   import Board from "./Board/Board.svelte";
 
   // Game config
@@ -83,35 +88,140 @@
   />
 </svelte:head>
 
-<div>
-  <div class="controls">
-    <!-- Game Config -->
-    <input
-      value={boardSize}
-      type="number"
-      on:change={handleBoardSizeChange}
-      disabled={isGameRunning}
-    />
-    <input
-      value={speed}
-      type="number"
-      on:change={handleSpeedChange}
-      disabled={isGameRunning}
-    />
+<div class="background-container">
+  <div class="central-container">
+    <h1 class="game-title">Conway's Game of Life</h1>
 
-    <!-- Game Controls -->
-    <button on:click={() => (isGameRunning ? handlePause() : handlePlay())}
-      >{isGameRunning ? "Pause" : "Play"}</button
-    >
-    <button on:click={() => handleReset()}>Reset</button>
+    <div class="controls">
+      <!-- Game Config -->
+      <div class="input-group">
+        <IconExpand fill={colors.light.primary} />
+        <input
+          class="control-input"
+          value={boardSize}
+          type="number"
+          on:change={handleBoardSizeChange}
+          disabled={isGameRunning}
+        />
+      </div>
+
+      <div class="input-group" style="margin-left: 20px;">
+        <IconSpeed fill={colors.light.primary} />
+        <input
+          class="control-input"
+          value={speed}
+          type="number"
+          on:change={handleSpeedChange}
+          disabled={isGameRunning}
+        />
+      </div>
+
+      <!-- Game Controls -->
+      <div class="button-group">
+        <button
+          class="control-button"
+          on:click={() => (isGameRunning ? handlePause() : handlePlay())}
+        >
+          {#if isGameRunning}
+            Pause
+          {:else}
+            <IconPlay fill={colors.light.primary} w="20" h="20" />
+          {/if}
+        </button>
+
+        <button
+          class="control-button"
+          style="margin-left: 5px;"
+          on:click={() => handleReset()}
+        >
+          <IconReset fill={colors.light.primary} />
+        </button>
+      </div>
+    </div>
+
+    <Board bind:boardMatrix />
   </div>
-
-  <Board bind:boardMatrix />
 </div>
 
 <style>
+  .background-container {
+    min-height: 100vh;
+    background-color: #333;
+  }
+
+  .central-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-title {
+    margin-top: 20px;
+    font-size: 24px;
+
+    background: linear-gradient(90deg, #c6500e, #ffeec2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .controls {
     display: flex;
     justify-content: center;
+
+    margin-top: 50px;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .control-input {
+    background: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: var(--light-primary);
+    font-size: 16px;
+
+    border-bottom: 2px solid var(--light-primary-dimmed);
+    transition: border 0.2s;
+
+    height: 20px;
+    width: 50px;
+    padding: 0 5px;
+
+    margin-left: 5px;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
+    height: 15px;
+  }
+
+  .control-input:focus-visible,
+  .control-input:hover {
+    border-bottom: 2px solid var(--light-primary);
+  }
+
+  .button-group {
+    margin-left: 50px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .control-button {
+    padding: 0;
+    border: none;
+    background: none;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+  }
+
+  .control-button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
   }
 </style>

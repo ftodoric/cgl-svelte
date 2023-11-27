@@ -1,4 +1,7 @@
 :root {
+  --light-primary: #ddd;
+  --light-primary-dimmed: #666;
+
   /* Game Board Colors */
   --board-bg: #888;
   --cell-color-dead: #555;

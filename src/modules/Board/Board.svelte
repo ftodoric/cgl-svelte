@@ -29,6 +29,8 @@
 
 <style>
   .board-container {
+    margin-top: 50px;
+
     display: flex;
     justify-content: center;
     background-color: red;

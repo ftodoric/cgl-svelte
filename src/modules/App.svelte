@@ -85,6 +85,7 @@
 
 <div>
   <div class="controls">
+    <!-- Game Config -->
     <input
       value={boardSize}
       type="number"
@@ -97,6 +98,8 @@
       on:change={handleSpeedChange}
       disabled={isGameRunning}
     />
+
+    <!-- Game Controls -->
     <button on:click={() => (isGameRunning ? handlePause() : handlePlay())}
       >{isGameRunning ? "Pause" : "Play"}</button
     >

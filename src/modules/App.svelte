@@ -132,7 +132,7 @@
 
         <button
           class="control-button"
-          style="margin-left: 5px;"
+          style="margin-left: 10px;"
           on:click={() => handleReset()}
         >
           <IconReset fill={colors.light.primary} />

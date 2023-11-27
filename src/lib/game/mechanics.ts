@@ -11,22 +11,17 @@ export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
           if (i === rowIndex && j === colIndex) continue;
 
           if (boardMatrix[i]?.[j]) liveNeighbors++;
+
+          if (liveNeighbors === 4) break;
         }
+        if (liveNeighbors === 4) break;
       }
 
       // If cell alive
-      if (cell) {
-        if (liveNeighbors === 2 || liveNeighbors === 3) {
-          return true;
-        }
-      }
-      // If cell dead
-      else {
-        if (liveNeighbors === 3) {
-          return true;
-        }
-      }
+      const liveAndWillLive =
+        cell && (liveNeighbors === 2 || liveNeighbors === 3);
+      const deadAndWillLive = !cell && liveNeighbors === 3;
 
-      return false;
+      return liveAndWillLive || deadAndWillLive;
     });
   });

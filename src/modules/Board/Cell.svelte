@@ -1,8 +1,8 @@
 <script>
-  export let size = 15;
   export let isAlive = false;
   export let isFirstRow = false;
   export let isFirstCol = false;
+  export let size = 15;
 </script>
 
 <button
@@ -10,7 +10,7 @@
   class:alive={isAlive}
   class:first-row={isFirstRow}
   class:first-col={isFirstCol}
-  style={`flex: ${size}px 0 0; height: ${size}px;`}
+  style="flex: {size}px 0 0; height: {size}px;"
   on:click
 />
 

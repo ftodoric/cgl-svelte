@@ -3,16 +3,20 @@
   import Cell from "./Cell.svelte";
 
   export let boardMatrix: BoardMatrix;
+  export let cellSize = 15;
 </script>
 
 <div class="board-container">
   {#if boardMatrix}
     <div class="game-board">
       {#each boardMatrix as row, rowIndex}
-        <div class="board-row" style="width: calc(7 * 15px);">
+        <div
+          class="board-row"
+          style="width: calc({boardMatrix.length} * {cellSize}px);"
+        >
           {#each row as cell, colIndex}
             <Cell
-              size={15}
+              size={cellSize}
               isAlive={cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
@@ -23,17 +27,13 @@
       {/each}
     </div>
   {:else}
-    <div>Loading</div>
+    <div style="color: var(--light-primary);">Loading...</div>
   {/if}
 </div>
 
 <style>
   .board-container {
     margin-top: 50px;
-
-    display: flex;
-    justify-content: center;
-    background-color: red;
   }
 
   .game-board {
@@ -42,7 +42,6 @@
   }
 
   .board-row {
-    width: 100%;
     display: flex;
   }
 </style>

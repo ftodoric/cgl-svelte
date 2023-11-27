@@ -2,6 +2,7 @@
   import IconExpand from "$lib/components/Icons/IconExpand.svelte";
   import IconSpeed from "$lib/components/Icons/IconSpeed.svelte";
   import IconPlay from "$lib/components/Icons/IconPlay.svelte";
+  import IconPause from "$lib/components/Icons/IconPause.svelte";
   import IconReset from "$lib/components/Icons/IconReset.svelte";
   import { getNextBoardMatrix } from "$lib/game/mechanics";
   import {
@@ -123,7 +124,7 @@
           on:click={() => (isGameRunning ? handlePause() : handlePlay())}
         >
           {#if isGameRunning}
-            Pause
+            <IconPause fill={colors.light.primary} w="20" h="20" />
           {:else}
             <IconPlay fill={colors.light.primary} w="20" h="20" />
           {/if}

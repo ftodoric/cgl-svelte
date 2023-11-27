@@ -34,6 +34,8 @@
 <style>
   .board-container {
     margin-top: 50px;
+    background-color: var(--board-bg);
+    border-radius: 3px;
   }
 
   .game-board {

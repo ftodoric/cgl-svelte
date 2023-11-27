@@ -31,6 +31,7 @@
 
   // Game activity data
   let isGameRunning = false;
+  let isPaused = false;
   let frId: number; // Frame Request ID
 
   // Game iteration
@@ -43,6 +44,12 @@
       frId = requestAnimationFrame(updateBoard);
     }, 1000 / speed); // Game Speed parameter formula
   };
+
+  // Save Handler
+  $: {
+    if (!isGameRunning && !isPaused)
+      saveCurrentConfig({ boardSize, speed, boardMatrix });
+  }
 
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {
@@ -57,26 +64,26 @@
   };
 
   const handlePlay = () => {
-    // On Play save current config
-    saveCurrentConfig({ boardSize, speed, boardMatrix });
-
     // Start the game
     isGameRunning = true;
+    isPaused = false;
+
     updateBoard();
   };
 
   const handlePause = () => {
     isGameRunning = false;
+    isPaused = true;
     cancelAnimationFrame(frId);
   };
 
   const handleReset = () => {
     // Reset the game
     handlePause();
+    isPaused = false;
 
     // Get last board matrix save
     const save = getLastSave();
-
     if (save) boardMatrix = save.boardMatrix;
   };
 </script>
@@ -203,6 +210,10 @@
   .control-input:focus-visible,
   .control-input:hover {
     border-bottom: 2px solid var(--light-primary);
+  }
+
+  .control-input:disabled {
+    border-color: transparent;
   }
 
   .button-group {

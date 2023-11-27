@@ -21,6 +21,12 @@
     background-color: var(--cell-color-dead);
     border-right: 1px solid var(--board-bg);
     border-bottom: 1px solid var(--board-bg);
+
+    border-radius: 3px;
+  }
+
+  .cell-container:hover {
+    cursor: pointer;
   }
 
   .alive {

@@ -46,10 +46,10 @@
   };
 
   // Save Handler
-  /*   $: {
+  $: {
     if (!isGameRunning && !isPaused)
       saveCurrentConfig({ boardSize, speed, boardMatrix });
-  } */
+  }
 
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {

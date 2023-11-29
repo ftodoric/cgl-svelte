@@ -10,7 +10,8 @@ interface SaveConfig {
 }
 
 export const saveCurrentConfig = (config: SaveConfig) => {
-  localStorage.setItem(saveLSKey, JSON.stringify(config));
+  if (typeof localStorage !== "undefined")
+    localStorage.setItem(saveLSKey, JSON.stringify(config));
 };
 
 export const getLastSave = (): SaveConfig | undefined => {

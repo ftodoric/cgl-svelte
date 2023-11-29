@@ -1,0 +1,136 @@
+.background-container {
+  min-height: 100vh;
+  background-color: #333;
+}
+
+.central-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-title {
+  margin-top: 20px;
+  font-size: 30px;
+
+  background: linear-gradient(90deg, #c6500e, #ffeec2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.control-input {
+  background: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: var(--light-primary);
+  font-size: 16px;
+
+  border-bottom: 2px solid var(--light-primary-dimmed);
+  transition: border 0.2s;
+
+  height: 20px;
+  width: 50px;
+  padding: 0 5px;
+
+  margin-left: 5px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  height: 15px;
+}
+
+.control-input:focus-visible,
+.control-input:hover {
+  border-bottom: 2px solid var(--light-primary);
+}
+
+.control-input:disabled {
+  border-color: transparent;
+}
+
+.button-group {
+  margin-left: 50px;
+
+  display: flex;
+  align-items: center;
+}
+
+.button-group > button + button {
+  margin-left: 10px;
+}
+
+.control-button {
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.control-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.control-button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
+
+.menu-button {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  margin: 10px;
+
+  transition:
+    transform 0.2s,
+    right 0.2s;
+}
+
+.button-shifted {
+  right: 300px;
+  transform: rotate(180deg);
+}
+
+.menu-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.button-shifted:hover {
+  right: 300px;
+  transform: rotate(180deg) scale(1.1);
+}
+
+.drawer-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+
+  height: 100vh;
+  width: 300px;
+
+  transition: right 0.2s;
+
+  box-shadow: -2px 0 10px #222;
+
+  padding: 20px;
+  color: var(--light-primary);
+}
+
+.drawer-opened {
+  right: 0;
+}

@@ -5,6 +5,8 @@
   import IconPause from "$lib/components/Icons/IconPause.svelte";
   import IconReset from "$lib/components/Icons/IconReset.svelte";
   import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
+  import IconDelete from "$lib/components/Icons/IconDelete.svelte";
+
   import {
     getNextBoardMatrix,
     getRandomBoardMatrix,
@@ -67,10 +69,6 @@
     speed = +e.target.value;
   };
 
-  const handleRandomize = (e: any) => {
-    boardMatrix = getRandomBoardMatrix(boardSize);
-  };
-
   const handlePlay = () => {
     // Start the game
     isGameRunning = true;
@@ -93,6 +91,14 @@
     // Get last board matrix save
     const save = getLastSave();
     if (save) boardMatrix = save.boardMatrix;
+  };
+
+  const handleRandomize = (e: any) => {
+    boardMatrix = getRandomBoardMatrix(boardSize);
+  };
+
+  const handleCleanBoard = () => {
+    boardMatrix = boardMatrix.map((row) => row.map(() => false));
   };
 </script>
 
@@ -149,8 +155,32 @@
           <IconReset fill={colors.light.primary} />
         </button>
 
-        <button class="control-button" on:click={handleRandomize}>
-          <IconRandomize fill={colors.light.primary} w="24" h="24" />
+        <button
+          class="control-button"
+          on:click={handleRandomize}
+          disabled={isGameRunning}
+        >
+          <IconRandomize
+            fill={isGameRunning
+              ? colors.light.primaryDimmed
+              : colors.light.primary}
+            w="24"
+            h="24"
+          />
+        </button>
+
+        <button
+          class="control-button"
+          on:click={handleCleanBoard}
+          disabled={isGameRunning}
+        >
+          <IconDelete
+            fill={isGameRunning
+              ? colors.light.primaryDimmed
+              : colors.light.primary}
+            w="24"
+            h="24"
+          />
         </button>
       </div>
     </div>
@@ -247,5 +277,10 @@
   .control-button:hover {
     cursor: pointer;
     transform: scale(1.05);
+  }
+
+  .control-button:disabled {
+    transform: none;
+    cursor: not-allowed;
   }
 </style>

@@ -5,6 +5,11 @@ import type { BoardMatrix } from "./types";
  * When loaded into the game, they're centered.
  */
 
+export enum SupportedPatterns {
+  Glider = "glider",
+  LWSS = "lightweight-spaceship",
+}
+
 /**
  * Oscillators
  *
@@ -61,3 +66,13 @@ export const hwss: BoardMatrix = [
   [true, false, false, false, false, false, true],
   [true, true, true, true, true, true, false],
 ];
+
+export const getPatternMatrix = (pattern: SupportedPatterns) => {
+  switch (pattern) {
+    case SupportedPatterns.Glider:
+    default:
+      return glider;
+    case SupportedPatterns.LWSS:
+      return lwss;
+  }
+};

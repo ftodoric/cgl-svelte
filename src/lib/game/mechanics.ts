@@ -1,3 +1,4 @@
+import { getPatternMatrix, type SupportedPatterns } from "./cgl-patterns";
 import type { BoardMatrix } from "./types";
 
 export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
@@ -32,3 +33,50 @@ export const getRandomBoardMatrix = (boardSize: number) =>
       Math.random() < 0.3 ? true : false
     )
   );
+
+/**
+ * Pattern will be generated inside the given dimensions. If the pattern is larger than the current board,
+ * pattern will be clipped.
+ *
+ * @param boardSize
+ * @param pattern
+ * @returns
+ */
+export const getBoardMatrixWithPattern = (
+  boardSize: number,
+  pattern: SupportedPatterns
+) => {
+  let generatedBoardMatrix = Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () => false)
+  );
+
+  const patternMatrix = getPatternMatrix(pattern);
+  const patternRows = patternMatrix.length;
+  const patternCols = patternMatrix[0].length;
+
+  // Determine from which row and column to draw
+  let startingRowIndex = Math.max(
+    Math.floor(boardSize / 2) - Math.floor(patternRows / 2) - 1,
+    0
+  );
+  let startingColIndex = Math.max(
+    Math.floor(boardSize / 2) - Math.floor(patternCols / 2) - 1,
+    0
+  );
+
+  console.log(
+    "%clog | description\n",
+    "color: #0e8dbf; margin-bottom: 5px;",
+    patternRows,
+    patternCols
+  );
+
+  for (let i = 0; i < patternRows; i++) {
+    for (let j = 0; j < patternCols; j++) {
+      generatedBoardMatrix[startingRowIndex + i][startingRowIndex + j] =
+        patternMatrix[i][j];
+    }
+  }
+
+  return generatedBoardMatrix;
+};

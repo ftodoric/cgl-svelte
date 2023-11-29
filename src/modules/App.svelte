@@ -11,6 +11,7 @@
   import IconMenu from "$lib/components/Icons/IconMenu.svelte";
 
   import {
+    getBoardMatrixWithPattern,
     getNextBoardMatrix,
     getRandomBoardMatrix,
   } from "$lib/game/mechanics";
@@ -24,6 +25,7 @@
   import type { BoardMatrix } from "$lib/game/types";
   import { colors } from "../styles/colors";
   import Board from "./Board/Board.svelte";
+  import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
 
   // Game config
   let boardSize: number = getInitialBoardSize();
@@ -105,6 +107,10 @@
 
   const handleCleanBoard = () => {
     boardMatrix = boardMatrix.map((row) => row.map(() => false));
+  };
+
+  const handleDrawPattern = (pattern: SupportedPatterns) => {
+    boardMatrix = getBoardMatrixWithPattern(boardSize, pattern);
   };
 </script>
 
@@ -194,7 +200,9 @@
       </div>
     </div>
 
-    <Board bind:boardMatrix />
+    <div style="margin-top: 50px;">
+      <Board bind:boardMatrix />
+    </div>
   </div>
 
   <button
@@ -206,6 +214,41 @@
   </button>
 
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
-    Available patterns comming soon...
+    <div style="font-size: 22px; font-weight: bold;">Explore patterns</div>
+
+    <div style="margin-top: 20px;">Spaceships</div>
+
+    <button
+      on:click={(e) => {
+        e.stopPropagation();
+        handleDrawPattern(SupportedPatterns.Glider);
+      }}
+      style="width: 100%; margin-top: 20px; 
+       background-color: var(--board-bg); border-radius: 5px;"
+    >
+      <div
+        style="display: flex; justify-content: space-between; align-items: center;"
+      >
+        <div style="color: #fff;">Glider</div>
+
+        <Board boardMatrix={glider} readOnly />
+      </div>
+    </button>
+
+    <button
+      on:click={(e) => {
+        e.stopPropagation();
+        handleDrawPattern(SupportedPatterns.LWSS);
+      }}
+      style="width: 100%; margin-top: 20px; background-color: var(--board-bg); border-radius: 5px;"
+    >
+      <div
+        style="display: flex; justify-content: space-between; align-items: center;"
+      >
+        <div style="color: #fff;">Light-weight Spaceship</div>
+
+        <Board boardMatrix={lwss} readOnly />
+      </div>
+    </button>
   </div>
 </div>

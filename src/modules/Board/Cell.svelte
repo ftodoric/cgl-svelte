@@ -3,6 +3,7 @@
   export let isFirstRow = false;
   export let isFirstCol = false;
   export let size = 15;
+  export let readOnly = false;
 </script>
 
 <button
@@ -10,6 +11,7 @@
   class:alive={isAlive}
   class:first-row={isFirstRow}
   class:first-col={isFirstCol}
+  class:read-only={readOnly}
   style="flex: {size}px 0 0; height: {size}px;"
   on:click
 />
@@ -29,6 +31,10 @@
 
   .cell-container:hover {
     cursor: pointer;
+  }
+
+  .read-only:hover {
+    cursor: default;
   }
 
   .alive {

@@ -4,23 +4,27 @@
 
   export let boardMatrix: BoardMatrix;
   export let cellSize = 15;
+  export let readOnly = false;
 </script>
 
-<div class="board-container">
+<div
+  class="board-container"
+  style="width: calc({boardMatrix[0].length} * {cellSize}px);"
+>
   {#if boardMatrix}
     <div class="game-board">
       {#each boardMatrix as row, rowIndex}
-        <div
-          class="board-row"
-          style="width: calc({boardMatrix.length} * {cellSize}px);"
-        >
+        <div class="board-row">
           {#each row as cell, colIndex}
             <Cell
               size={cellSize}
               isAlive={cell}
               isFirstRow={rowIndex === 0}
               isFirstCol={colIndex === 0}
-              on:click={() => (cell = !cell)}
+              {readOnly}
+              on:click={() => {
+                if (!readOnly) cell = !cell;
+              }}
             />
           {/each}
         </div>
@@ -33,9 +37,8 @@
 
 <style>
   .board-container {
-    margin-top: 50px;
-    background-color: var(--board-bg);
     border-radius: 3px;
+    background-color: var(--board-bg);
   }
 
   .game-board {

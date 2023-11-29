@@ -134,3 +134,20 @@ input[type="number"]::-webkit-inner-spin-button {
 .drawer-opened {
   right: 0;
 }
+
+.drawer-menu button {
+  font-size: 16px;
+  color: var(--light-primary);
+  transition: background-color 0.3s;
+
+}
+
+.drawer-menu button > div {
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.drawer-menu button:hover {
+  cursor: pointer !important;
+  background-color: #999 !important;
+}

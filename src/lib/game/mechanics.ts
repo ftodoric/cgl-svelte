@@ -25,3 +25,10 @@ export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
       return liveAndWillLive || deadAndWillLive;
     });
   });
+
+export const getRandomBoardMatrix = (boardSize: number) =>
+  Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () =>
+      Math.random() < 0.3 ? true : false
+    )
+  );

@@ -23,6 +23,8 @@
     border-bottom: 1px solid var(--board-bg);
 
     border-radius: 3px;
+
+    /* transition: background-color 0.1s; */
   }
 
   .cell-container:hover {

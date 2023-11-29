@@ -4,7 +4,11 @@
   import IconPlay from "$lib/components/Icons/IconPlay.svelte";
   import IconPause from "$lib/components/Icons/IconPause.svelte";
   import IconReset from "$lib/components/Icons/IconReset.svelte";
-  import { getNextBoardMatrix } from "$lib/game/mechanics";
+  import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
+  import {
+    getNextBoardMatrix,
+    getRandomBoardMatrix,
+  } from "$lib/game/mechanics";
   import {
     getInitialBoardMatrix,
     getInitialBoardSize,
@@ -61,6 +65,10 @@
 
   const handleSpeedChange = (e: any) => {
     speed = +e.target.value;
+  };
+
+  const handleRandomize = (e: any) => {
+    boardMatrix = getRandomBoardMatrix(boardSize);
   };
 
   const handlePlay = () => {
@@ -137,12 +145,12 @@
           {/if}
         </button>
 
-        <button
-          class="control-button"
-          style="margin-left: 10px;"
-          on:click={() => handleReset()}
-        >
+        <button class="control-button" on:click={handleReset}>
           <IconReset fill={colors.light.primary} />
+        </button>
+
+        <button class="control-button" on:click={handleRandomize}>
+          <IconRandomize fill={colors.light.primary} w="24" h="24" />
         </button>
       </div>
     </div>
@@ -165,7 +173,7 @@
 
   .game-title {
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 30px;
 
     background: linear-gradient(90deg, #c6500e, #ffeec2);
     background-clip: text;
@@ -221,6 +229,10 @@
 
     display: flex;
     align-items: center;
+  }
+
+  .button-group > button + button {
+    margin-left: 10px;
   }
 
   .control-button {

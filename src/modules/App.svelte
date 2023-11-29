@@ -6,6 +6,7 @@
   import IconReset from "$lib/components/Icons/IconReset.svelte";
   import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
   import IconDelete from "$lib/components/Icons/IconDelete.svelte";
+  import IconMenu from "$lib/components/Icons/IconMenu.svelte";
 
   import {
     getNextBoardMatrix,
@@ -56,6 +57,9 @@
     if (!isGameRunning && !isPaused)
       saveCurrentConfig({ boardSize, speed, boardMatrix });
   }
+
+  // Menu Drawer state
+  let isDrawerOpen = false;
 
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {
@@ -187,6 +191,18 @@
 
     <Board bind:boardMatrix />
   </div>
+
+  <button
+    class="menu-button"
+    class:button-shifted={isDrawerOpen}
+    on:click={() => (isDrawerOpen = !isDrawerOpen)}
+  >
+    <IconMenu fill={colors.light.primary} w="30px" h="30px" />
+  </button>
+
+  <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
+    Available patterns comming soon...
+  </div>
 </div>
 
 <style>
@@ -266,9 +282,6 @@
   }
 
   .control-button {
-    padding: 0;
-    border: none;
-    background: none;
     transition: transform 0.2s;
     display: flex;
     align-items: center;
@@ -282,5 +295,51 @@
   .control-button:disabled {
     transform: none;
     cursor: not-allowed;
+  }
+
+  .menu-button {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    margin: 10px;
+
+    transition:
+      transform 0.2s,
+      right 0.2s;
+  }
+
+  .button-shifted {
+    right: 300px;
+    transform: rotate(180deg);
+  }
+
+  .menu-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  .button-shifted:hover {
+    right: 300px;
+    transform: rotate(180deg) scale(1.1);
+  }
+
+  .drawer-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+
+    height: 100vh;
+    width: 300px;
+
+    transition: right 0.2s;
+
+    box-shadow: -2px 0 10px #222;
+
+    padding: 20px;
+    color: var(--light-primary);
+  }
+
+  .drawer-opened {
+    right: 0;
   }
 </style>

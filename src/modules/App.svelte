@@ -122,7 +122,7 @@
 
     <div class="controls">
       <!-- Game Config -->
-      <div class="input-group">
+      <div class="input-group" title="Board Size">
         <IconExpand fill={colors.light.primary} />
         <input
           class="control-input"
@@ -133,7 +133,7 @@
         />
       </div>
 
-      <div class="input-group" style="margin-left: 20px;">
+      <div class="input-group" style="margin-left: 20px;" title="Game Speed">
         <IconSpeed fill={colors.light.primary} />
         <input
           class="control-input"
@@ -149,6 +149,7 @@
         <button
           class="control-button"
           on:click={() => (isGameRunning ? handlePause() : handlePlay())}
+          title={isGameRunning ? "Pause" : "Play"}
         >
           {#if isGameRunning}
             <IconPause fill={colors.light.primary} w="20" h="20" />
@@ -157,7 +158,7 @@
           {/if}
         </button>
 
-        <button class="control-button" on:click={handleReset}>
+        <button class="control-button" on:click={handleReset} title="Reset">
           <IconReset fill={colors.light.primary} />
         </button>
 
@@ -165,6 +166,7 @@
           class="control-button"
           on:click={handleRandomize}
           disabled={isGameRunning}
+          title="Randomize"
         >
           <IconRandomize
             fill={isGameRunning
@@ -179,6 +181,7 @@
           class="control-button"
           on:click={handleCleanBoard}
           disabled={isGameRunning}
+          title="Clean the Board"
         >
           <IconDelete
             fill={isGameRunning

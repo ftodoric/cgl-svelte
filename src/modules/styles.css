@@ -192,3 +192,26 @@
   cursor: pointer !important;
   background-color: #999 !important;
 }
+
+.sikret {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 4px;
+
+  line-height: 1.6;
+
+  color: var(--light-primary);
+}
+
+.sikret:hover {
+  background-color: #444;
+  cursor: pointer;
+}
+
+.sikret-hide:hover {
+  cursor: pointer;
+  background-color: #444;
+}

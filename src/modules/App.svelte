@@ -28,6 +28,9 @@
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
   import IconArrow from "$lib/components/Icons/IconArrow.svelte";
 
+  let count = 0;
+  let show = false;
+
   // Game config
   let boardSize: number = getInitialBoardSize();
   let speed: number = getInitialSpeed();
@@ -56,6 +59,11 @@
       frId = requestAnimationFrame(updateBoard);
     }, 1000 / speed); // Game Speed parameter formula
   };
+
+  $: {
+    console.log("%clog | usao", "color: #0e8dbf; margin-bottom: 5px;");
+    show = count === 3;
+  }
 
   // Save Handler
   $: {
@@ -116,6 +124,11 @@
 
   const handleDrawPattern = (pattern: SupportedPatterns) => {
     boardMatrix = getBoardMatrixWithPattern(boardSize, pattern);
+  };
+
+  const handleClick = () => {
+    if (count === 3) count = 0;
+    else count += 1;
   };
 </script>
 
@@ -313,5 +326,24 @@
         </div>
       </button>
     </div>
+  </div>
+
+  <button class="sikret" on:click={handleClick}>
+    {#if show}
+      X
+    {/if}
+  </button>
+
+  <div
+    style={`height: 200px; position: fixed; transition: bottom 0.2s; right: 40px; bottom: ${
+      show ? 0 : -200
+    }px;`}
+  >
+    <img
+      src="capi.jpg"
+      alt="simpleCapi"
+      height="200px"
+      style="display: block; border-radius: 5px 5px 0 0;"
+    />
   </div>
 </div>

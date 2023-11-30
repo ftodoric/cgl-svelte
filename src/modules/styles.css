@@ -43,14 +43,10 @@
   transition: border 0.2s;
 
   height: 20px;
-  width: 50px;
+  width: 30px;
   padding: 0 5px;
 
   margin-left: 5px;
-}
-
-input[type="number"]::-webkit-inner-spin-button {
-  height: 15px;
 }
 
 .control-input:focus-visible,
@@ -60,6 +56,26 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .control-input:disabled {
   border-color: transparent;
+}
+
+.input-spinners {
+  margin-left: 5px;
+  width: auto !important;
+}
+
+.input-spinners button {
+  padding: 0 4px;
+}
+
+.input-spinners button:hover {
+  background-color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-spinners button:disabled {
+  cursor: default;
+  background-color: inherit;
 }
 
 .button-group {

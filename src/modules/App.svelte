@@ -26,6 +26,7 @@
   import { colors } from "../styles/colors";
   import Board from "./Board/Board.svelte";
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
+  import IconArrow from "$lib/components/Icons/IconArrow.svelte";
 
   // Game config
   let boardSize: number = getInitialBoardSize();
@@ -62,15 +63,19 @@
       saveCurrentConfig({ boardSize, speed, boardMatrix });
   }
 
+  // Update board matrix on board size change
+  $: {
+    boardMatrix = boardMatrix = Array.from({ length: boardSize }, () =>
+      Array.from({ length: boardSize }, () => false)
+    );
+  }
+
   // Menu Drawer state
   let isDrawerOpen = false;
 
   // Controls Handlers
   const handleBoardSizeChange = (e: any) => {
     boardSize = +e.target.value;
-    boardMatrix = Array.from({ length: boardSize }, () =>
-      Array.from({ length: boardSize }, () => false)
-    );
   };
 
   const handleSpeedChange = (e: any) => {
@@ -137,6 +142,41 @@
           on:change={handleBoardSizeChange}
           disabled={isGameRunning}
         />
+
+        <div
+          class="input-spinners"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
+        >
+          <button
+            on:click={() => {
+              boardSize += 1;
+            }}
+            disabled={isGameRunning}
+            style="transform: rotate(180deg);"
+          >
+            <IconArrow
+              w="10px"
+              h="10px"
+              fill={isGameRunning
+                ? colors.light.primaryDimmed
+                : colors.light.primary}
+            />
+          </button>
+          <button
+            on:click={() => {
+              boardSize -= 1;
+            }}
+            disabled={isGameRunning}
+          >
+            <IconArrow
+              w="10px"
+              h="10px"
+              fill={isGameRunning
+                ? colors.light.primaryDimmed
+                : colors.light.primary}
+            />
+          </button>
+        </div>
       </div>
 
       <div class="input-group" style="margin-left: 20px;" title="Game Speed">
@@ -146,8 +186,28 @@
           value={speed}
           type="number"
           on:change={handleSpeedChange}
-          disabled={isGameRunning}
         />
+
+        <div
+          class="input-spinners"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
+        >
+          <button
+            on:click={() => {
+              speed += 1;
+            }}
+            style="transform: rotate(180deg);"
+          >
+            <IconArrow w="10px" h="10px" fill={colors.light.primary} />
+          </button>
+          <button
+            on:click={() => {
+              speed -= 1;
+            }}
+          >
+            <IconArrow w="10px" h="10px" fill={colors.light.primary} />
+          </button>
+        </div>
       </div>
 
       <!-- Game Controls -->

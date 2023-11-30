@@ -64,13 +64,6 @@ export const getBoardMatrixWithPattern = (
     0
   );
 
-  console.log(
-    "%clog | description\n",
-    "color: #0e8dbf; margin-bottom: 5px;",
-    patternRows,
-    patternCols
-  );
-
   for (let i = 0; i < patternRows; i++) {
     for (let j = 0; j < patternCols; j++) {
       generatedBoardMatrix[startingRowIndex + i][startingRowIndex + j] =

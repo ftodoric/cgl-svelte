@@ -214,38 +214,44 @@
   </button>
 
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
-    <div style="font-size: 22px; font-weight: bold;">Explore patterns</div>
-
-    <div style="margin-top: 50px;">Spaceships</div>
-
-    <button
-      on:click={(e) => {
-        e.stopPropagation();
-        handleDrawPattern(SupportedPatterns.Glider);
-      }}
-    >
-      <div
-        style="display: flex; justify-content: space-between; align-items: center;"
-      >
-        <div style="color: #fff;">Glider</div>
-
-        <Board boardMatrix={glider} readOnly />
+    <div class="content" class:content-opened={isDrawerOpen}>
+      <div style="font-size: 22px; font-weight: bold;" class="title">
+        Explore patterns
       </div>
-    </button>
 
-    <button
-      on:click={(e) => {
-        e.stopPropagation();
-        handleDrawPattern(SupportedPatterns.LWSS);
-      }}
-    >
-      <div
-        style="display: flex; justify-content: space-between; align-items: center;"
+      <div class="subtitle">Spaceships</div>
+
+      <button
+        class="pattern-button"
+        on:click={(e) => {
+          e.stopPropagation();
+          handleDrawPattern(SupportedPatterns.Glider);
+        }}
       >
-        <div style="color: #fff;">Light-weight Spaceship</div>
+        <div
+          style="display: flex; justify-content: space-between; align-items: center;"
+        >
+          <div style="color: #fff;">Glider</div>
 
-        <Board boardMatrix={lwss} readOnly />
-      </div>
-    </button>
+          <Board boardMatrix={glider} readOnly />
+        </div>
+      </button>
+
+      <button
+        class="pattern-button"
+        on:click={(e) => {
+          e.stopPropagation();
+          handleDrawPattern(SupportedPatterns.LWSS);
+        }}
+      >
+        <div
+          style="display: flex; justify-content: space-between; align-items: center;"
+        >
+          <div style="color: #fff;">Light-weight Spaceship</div>
+
+          <Board boardMatrix={lwss} readOnly />
+        </div>
+      </button>
+    </div>
   </div>
 </div>

@@ -97,6 +97,7 @@ input[type="number"]::-webkit-inner-spin-button {
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 10;
 
   margin: 10px;
 
@@ -106,7 +107,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .button-shifted {
-  right: var(--drawer-width);
   transform: rotate(180deg);
 }
 
@@ -115,7 +115,6 @@ input[type="number"]::-webkit-inner-spin-button {
   transform: scale(1.1);
 }
 .button-shifted:hover {
-  right: var(--drawer-width);
   transform: rotate(180deg) scale(1.1);
 }
 
@@ -140,7 +139,24 @@ input[type="number"]::-webkit-inner-spin-button {
   right: 0;
 }
 
-.drawer-menu > button {
+.drawer-menu .content {
+  transition: opacity 0s;
+  opacity: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-menu .content-opened {
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.drawer-menu .subtitle {
+  margin-top: 50px;
+}
+
+.drawer-menu .pattern-button {
   font-size: 16px;
   color: var(--light-primary);
   transition: background-color 0.3s;

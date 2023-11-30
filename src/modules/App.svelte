@@ -200,7 +200,7 @@
       </div>
     </div>
 
-    <div style="margin-top: 50px;">
+    <div class="board-layout">
       <Board bind:boardMatrix />
     </div>
   </div>
@@ -216,15 +216,13 @@
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
     <div style="font-size: 22px; font-weight: bold;">Explore patterns</div>
 
-    <div style="margin-top: 20px;">Spaceships</div>
+    <div style="margin-top: 50px;">Spaceships</div>
 
     <button
       on:click={(e) => {
         e.stopPropagation();
         handleDrawPattern(SupportedPatterns.Glider);
       }}
-      style="width: 100%; margin-top: 20px; 
-       background-color: var(--board-bg); border-radius: 5px;"
     >
       <div
         style="display: flex; justify-content: space-between; align-items: center;"
@@ -240,7 +238,6 @@
         e.stopPropagation();
         handleDrawPattern(SupportedPatterns.LWSS);
       }}
-      style="width: 100%; margin-top: 20px; background-color: var(--board-bg); border-radius: 5px;"
     >
       <div
         style="display: flex; justify-content: space-between; align-items: center;"

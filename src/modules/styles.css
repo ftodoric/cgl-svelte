@@ -9,14 +9,17 @@
   align-items: center;
 }
 
-.game-title {
+.game-header {
   margin-top: 20px;
+
   font-size: 30px;
 
   background: linear-gradient(90deg, #c6500e, #ffeec2);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  display: flex;
 }
 
 .board-layout {
@@ -129,3 +132,24 @@
   cursor: pointer;
   background-color: #444;
 }
+
+/* Mobile Resolution */
+@media screen and (max-width: 768px) {
+  .game-header {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 20px;
+  }
+
+  .game-header h1 {
+    margin-right: 20px;
+  }
+
+  .menu-button {
+    position: static;
+    margin: 0;
+  }
+}
+
+/* Tablet Resolution */

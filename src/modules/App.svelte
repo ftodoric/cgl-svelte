@@ -124,7 +124,17 @@
 
 <div class="background-container">
   <div class="central-container">
-    <h1 class="game-title">Conway's Game of Life</h1>
+    <div class="game-header">
+      <h1>Conway's Game of Life</h1>
+
+      <button
+        class="menu-button"
+        class:button-shifted={isDrawerOpen}
+        on:click={() => (isDrawerOpen = !isDrawerOpen)}
+      >
+        <IconMenu fill="var(--primary)" w="30px" h="30px" />
+      </button>
+    </div>
 
     <ControlBar
       {isGameRunning}
@@ -141,14 +151,6 @@
       <Board bind:boardMatrix />
     </div>
   </div>
-
-  <button
-    class="menu-button"
-    class:button-shifted={isDrawerOpen}
-    on:click={() => (isDrawerOpen = !isDrawerOpen)}
-  >
-    <IconMenu fill="var(--primary)" w="30px" h="30px" />
-  </button>
 
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
     <div class="content" class:content-opened={isDrawerOpen}>

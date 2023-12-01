@@ -20,9 +20,9 @@
   .cell-container {
     border: none;
 
-    background-color: var(--cell-color-dead);
-    border-right: 1px solid var(--board-bg);
-    border-bottom: 1px solid var(--board-bg);
+    background-color: var(--cell-dead);
+    border-right: 1px solid var(--surface-s1);
+    border-bottom: 1px solid var(--surface-s1);
 
     border-radius: 3px;
 
@@ -38,14 +38,14 @@
   }
 
   .alive {
-    background-color: var(--cell-color-alive);
+    background-color: var(--cell-alive);
   }
 
   .first-row {
-    border-top: 1px solid var(--board-bg);
+    border-top: 1px solid var(--surface-s1);
   }
 
   .first-col {
-    border-left: 1px solid var(--board-bg);
+    border-left: 1px solid var(--surface-s1);
   }
 </style>

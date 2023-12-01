@@ -147,7 +147,7 @@
     class:button-shifted={isDrawerOpen}
     on:click={() => (isDrawerOpen = !isDrawerOpen)}
   >
-    <IconMenu fill="var(--light-primary)" w="30px" h="30px" />
+    <IconMenu fill="var(--primary)" w="30px" h="30px" />
   </button>
 
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>

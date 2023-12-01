@@ -27,7 +27,7 @@
 <div class="controls">
   <!-- Game Config -->
   <div class="input-group" title="Board Size">
-    <IconExpand fill="var(--light-primary)" />
+    <IconExpand fill="var(--primary)" />
     <input
       class="control-input"
       bind:value={boardSize}
@@ -49,9 +49,7 @@
         <IconArrow
           w="10px"
           h="10px"
-          fill={isGameRunning
-            ? "var(--light-primary-dimmed)"
-            : "var(--light-primary)"}
+          fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
         />
       </button>
       <button
@@ -63,16 +61,14 @@
         <IconArrow
           w="10px"
           h="10px"
-          fill={isGameRunning
-            ? "var(--light-primary-dimmed)"
-            : "var(--light-primary)"}
+          fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
         />
       </button>
     </div>
   </div>
 
   <div class="input-group" style="margin-left: 20px;" title="Game Speed">
-    <IconSpeed fill="var(--light-primary)" />
+    <IconSpeed fill="var(--primary)" />
     <input class="control-input" bind:value={speed} type="number" />
 
     <div
@@ -85,14 +81,14 @@
         }}
         style="transform: rotate(180deg);"
       >
-        <IconArrow w="10px" h="10px" fill="var(--light-primary)" />
+        <IconArrow w="10px" h="10px" fill="var(--primary)" />
       </button>
       <button
         on:click={() => {
           speed -= 1;
         }}
       >
-        <IconArrow w="10px" h="10px" fill="var(--light-primary)" />
+        <IconArrow w="10px" h="10px" fill="var(--primary)" />
       </button>
     </div>
   </div>
@@ -105,14 +101,14 @@
       title={isGameRunning ? "Pause" : "Play"}
     >
       {#if isGameRunning}
-        <IconPause fill="var(--light-primary)" w="20" h="20" />
+        <IconPause fill="var(--primary)" w="20" h="20" />
       {:else}
-        <IconPlay fill="var(--light-primary)" w="20" h="20" />
+        <IconPlay fill="var(--primary)" w="20" h="20" />
       {/if}
     </button>
 
     <button class="control-button" on:click={handleReset} title="Reset">
-      <IconReset fill="var(--light-primary)" />
+      <IconReset fill="var(--primary)" />
     </button>
 
     <button
@@ -122,9 +118,7 @@
       title="Randomize"
     >
       <IconRandomize
-        fill={isGameRunning
-          ? "var(--light-primary-dimmed)"
-          : "var(--light-primary)"}
+        fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
         w="24"
         h="24"
       />
@@ -137,9 +131,7 @@
       title="Clean the Board"
     >
       <IconDelete
-        fill={isGameRunning
-          ? "var(--light-primary-dimmed)"
-          : "var(--light-primary)"}
+        fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
         w="24"
         h="24"
       />

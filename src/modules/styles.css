@@ -1,6 +1,6 @@
 .background-container {
   min-height: 100vh;
-  background-color: #333;
+  background-color: var(--surface-s0);
 }
 
 .central-container {
@@ -62,7 +62,7 @@
   box-shadow: -2px 0 10px #222;
 
   padding: 20px;
-  color: var(--light-primary);
+  color: var(--primary);
 }
 
 .drawer-opened {
@@ -88,12 +88,12 @@
 
 .drawer-menu .pattern-button {
   font-size: 16px;
-  color: var(--light-primary);
+  color: var(--primary);
   transition: background-color 0.3s;
 
   width: 100%;
   margin-top: 10px;
-  background-color: var(--board-bg);
+  background-color: var(--surface-s1);
   border-radius: 5px;
 }
 
@@ -117,7 +117,7 @@
 
   line-height: 1.6;
 
-  color: var(--light-primary);
+  color: var(--primary);
 }
 
 .sikret:hover {

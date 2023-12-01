@@ -1,9 +1,11 @@
 :root {
-  --light-primary: #ddd;
-  --light-primary-dimmed: #666;
+  --surface-s0: #333;
+  --surface-s1: #888;
 
-  /* Game Board Colors */
-  --board-bg: #888;
-  --cell-color-dead: #555;
-  --cell-color-alive: #fff;
+  --primary: #ddd;
+  --primary-dimmed: #666;
+
+  /* Game Board Specific Colors */
+  --cell-dead: #555;
+  --cell-alive: #fff;
 }

@@ -31,14 +31,14 @@
       {/each}
     </div>
   {:else}
-    <div style="color: var(--light-primary);">Loading...</div>
+    <div style="color: var(--primary);">Loading...</div>
   {/if}
 </div>
 
 <style>
   .board-container {
     border-radius: 3px;
-    background-color: var(--board-bg);
+    background-color: var(--surface-s1);
   }
 
   .game-board {

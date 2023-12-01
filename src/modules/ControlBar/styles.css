@@ -15,10 +15,10 @@
   padding: 0;
   border: none;
   outline: none;
-  color: var(--light-primary);
+  color: var(--primary);
   font-size: 16px;
 
-  border-bottom: 2px solid var(--light-primary-dimmed);
+  border-bottom: 2px solid var(--primary-dimmed);
   transition: border 0.2s;
 
   height: 20px;
@@ -30,7 +30,7 @@
 
 .control-input:focus-visible,
 .control-input:hover {
-  border-bottom: 2px solid var(--light-primary);
+  border-bottom: 2px solid var(--primary);
 }
 
 .control-input:disabled {

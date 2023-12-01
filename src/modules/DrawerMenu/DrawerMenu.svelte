@@ -6,6 +6,14 @@
 
   export let isDrawerOpen: boolean;
   export let handleDrawPattern: (pattern: SupportedPatterns) => void;
+
+  const handlePatternClick = (pattern: SupportedPatterns) => (e: any) => {
+    e.stopPropagation();
+    handleDrawPattern(pattern);
+
+    // Close if on mobile resolutions
+    if (window?.innerWidth <= 768) isDrawerOpen = false;
+  };
 </script>
 
 <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
@@ -18,10 +26,7 @@
 
     <button
       class="pattern-button"
-      on:click={(e) => {
-        e.stopPropagation();
-        handleDrawPattern(SupportedPatterns.Glider);
-      }}
+      on:click={handlePatternClick(SupportedPatterns.Glider)}
     >
       <div
         style="display: flex; justify-content: space-between; align-items: center;"
@@ -34,10 +39,7 @@
 
     <button
       class="pattern-button"
-      on:click={(e) => {
-        e.stopPropagation();
-        handleDrawPattern(SupportedPatterns.LWSS);
-      }}
+      on:click={handlePatternClick(SupportedPatterns.LWSS)}
     >
       <div
         style="display: flex; justify-content: space-between; align-items: center;"

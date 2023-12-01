@@ -159,7 +159,7 @@
     {/if}
   </button>
 
-  <DrawerMenu {isDrawerOpen} {handleDrawPattern} />
+  <DrawerMenu bind:isDrawerOpen {handleDrawPattern} />
 
   <div
     style={`height: 200px; position: fixed; transition: bottom 0.2s; right: 40px; bottom: ${

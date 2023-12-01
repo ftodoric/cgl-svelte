@@ -24,72 +24,74 @@
   export let handleCleanBoard: () => void;
 </script>
 
-<div class="controls">
+<div class="control-bar">
   <!-- Game Config -->
-  <div class="input-group" title="Board Size">
-    <IconExpand fill="var(--primary)" />
-    <input
-      class="control-input"
-      bind:value={boardSize}
-      type="number"
-      disabled={isGameRunning}
-    />
+  <div class="game-config">
+    <div class="input-group" title="Board Size">
+      <IconExpand fill="var(--primary)" />
+      <input
+        class="control-input"
+        bind:value={boardSize}
+        type="number"
+        disabled={isGameRunning}
+      />
 
-    <div
-      class="input-spinners"
-      style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-    >
-      <button
-        on:click={() => {
-          boardSize += 1;
-        }}
-        disabled={isGameRunning}
-        style="transform: rotate(180deg);"
+      <div
+        class="input-spinners"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
       >
-        <IconArrow
-          w="10px"
-          h="10px"
-          fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
-        />
-      </button>
-      <button
-        on:click={() => {
-          boardSize -= 1;
-        }}
-        disabled={isGameRunning}
-      >
-        <IconArrow
-          w="10px"
-          h="10px"
-          fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
-        />
-      </button>
+        <button
+          on:click={() => {
+            boardSize += 1;
+          }}
+          disabled={isGameRunning}
+          style="transform: rotate(180deg);"
+        >
+          <IconArrow
+            w="10px"
+            h="10px"
+            fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
+          />
+        </button>
+        <button
+          on:click={() => {
+            boardSize -= 1;
+          }}
+          disabled={isGameRunning}
+        >
+          <IconArrow
+            w="10px"
+            h="10px"
+            fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
+          />
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="input-group" style="margin-left: 20px;" title="Game Speed">
-    <IconSpeed fill="var(--primary)" />
-    <input class="control-input" bind:value={speed} type="number" />
+    <div class="input-group" style="margin-left: 20px;" title="Game Speed">
+      <IconSpeed fill="var(--primary)" />
+      <input class="control-input" bind:value={speed} type="number" />
 
-    <div
-      class="input-spinners"
-      style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-    >
-      <button
-        on:click={() => {
-          speed += 1;
-        }}
-        style="transform: rotate(180deg);"
+      <div
+        class="input-spinners"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
       >
-        <IconArrow w="10px" h="10px" fill="var(--primary)" />
-      </button>
-      <button
-        on:click={() => {
-          speed -= 1;
-        }}
-      >
-        <IconArrow w="10px" h="10px" fill="var(--primary)" />
-      </button>
+        <button
+          on:click={() => {
+            speed += 1;
+          }}
+          style="transform: rotate(180deg);"
+        >
+          <IconArrow w="10px" h="10px" fill="var(--primary)" />
+        </button>
+        <button
+          on:click={() => {
+            speed -= 1;
+          }}
+        >
+          <IconArrow w="10px" h="10px" fill="var(--primary)" />
+        </button>
+      </div>
     </div>
   </div>
 

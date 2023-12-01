@@ -1,8 +1,19 @@
-.controls {
+.control-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 
-  margin-top: 50px;
+  margin: 50px 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .control-bar {
+    margin-top: 20px;
+  }
+}
+
+.game-config {
+  display: flex;
 }
 
 .input-group {
@@ -62,6 +73,13 @@
 
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .button-group {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 .button-group > button + button {

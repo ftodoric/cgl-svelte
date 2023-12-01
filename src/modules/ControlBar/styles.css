@@ -1,0 +1,85 @@
+.controls {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.control-input {
+  background: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: var(--light-primary);
+  font-size: 16px;
+
+  border-bottom: 2px solid var(--light-primary-dimmed);
+  transition: border 0.2s;
+
+  height: 20px;
+  width: 30px;
+  padding: 0 5px;
+
+  margin-left: 5px;
+}
+
+.control-input:focus-visible,
+.control-input:hover {
+  border-bottom: 2px solid var(--light-primary);
+}
+
+.control-input:disabled {
+  border-color: transparent;
+}
+
+.input-spinners {
+  margin-left: 5px;
+  width: auto !important;
+}
+
+.input-spinners button {
+  padding: 0 4px;
+}
+
+.input-spinners button:hover {
+  background-color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-spinners button:disabled {
+  cursor: default;
+  background-color: inherit;
+}
+
+.button-group {
+  margin-left: 50px;
+
+  display: flex;
+  align-items: center;
+}
+
+.button-group > button + button {
+  margin-left: 10px;
+}
+
+.control-button {
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.control-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.control-button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}

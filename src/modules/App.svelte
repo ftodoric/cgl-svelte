@@ -27,6 +27,7 @@
   import Board from "./Board/Board.svelte";
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
   import IconArrow from "$lib/components/Icons/IconArrow.svelte";
+  import ControlBar from "./ControlBar/ControlBar.svelte";
 
   let count = 0;
   let show = false;
@@ -81,14 +82,6 @@
   let isDrawerOpen = false;
 
   // Controls Handlers
-  const handleBoardSizeChange = (e: any) => {
-    boardSize = +e.target.value;
-  };
-
-  const handleSpeedChange = (e: any) => {
-    speed = +e.target.value;
-  };
-
   const handlePlay = () => {
     // Start the game
     isGameRunning = true;
@@ -113,7 +106,7 @@
     if (save) boardMatrix = save.boardMatrix;
   };
 
-  const handleRandomize = (e: any) => {
+  const handleRandomize = () => {
     boardMatrix = getRandomBoardMatrix(boardSize);
   };
 
@@ -143,134 +136,16 @@
   <div class="central-container">
     <h1 class="game-title">Conway's Game of Life</h1>
 
-    <div class="controls">
-      <!-- Game Config -->
-      <div class="input-group" title="Board Size">
-        <IconExpand fill={colors.light.primary} />
-        <input
-          class="control-input"
-          value={boardSize}
-          type="number"
-          on:change={handleBoardSizeChange}
-          disabled={isGameRunning}
-        />
-
-        <div
-          class="input-spinners"
-          style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-        >
-          <button
-            on:click={() => {
-              boardSize += 1;
-            }}
-            disabled={isGameRunning}
-            style="transform: rotate(180deg);"
-          >
-            <IconArrow
-              w="10px"
-              h="10px"
-              fill={isGameRunning
-                ? colors.light.primaryDimmed
-                : colors.light.primary}
-            />
-          </button>
-          <button
-            on:click={() => {
-              boardSize -= 1;
-            }}
-            disabled={isGameRunning}
-          >
-            <IconArrow
-              w="10px"
-              h="10px"
-              fill={isGameRunning
-                ? colors.light.primaryDimmed
-                : colors.light.primary}
-            />
-          </button>
-        </div>
-      </div>
-
-      <div class="input-group" style="margin-left: 20px;" title="Game Speed">
-        <IconSpeed fill={colors.light.primary} />
-        <input
-          class="control-input"
-          value={speed}
-          type="number"
-          on:change={handleSpeedChange}
-        />
-
-        <div
-          class="input-spinners"
-          style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-        >
-          <button
-            on:click={() => {
-              speed += 1;
-            }}
-            style="transform: rotate(180deg);"
-          >
-            <IconArrow w="10px" h="10px" fill={colors.light.primary} />
-          </button>
-          <button
-            on:click={() => {
-              speed -= 1;
-            }}
-          >
-            <IconArrow w="10px" h="10px" fill={colors.light.primary} />
-          </button>
-        </div>
-      </div>
-
-      <!-- Game Controls -->
-      <div class="button-group">
-        <button
-          class="control-button"
-          on:click={() => (isGameRunning ? handlePause() : handlePlay())}
-          title={isGameRunning ? "Pause" : "Play"}
-        >
-          {#if isGameRunning}
-            <IconPause fill={colors.light.primary} w="20" h="20" />
-          {:else}
-            <IconPlay fill={colors.light.primary} w="20" h="20" />
-          {/if}
-        </button>
-
-        <button class="control-button" on:click={handleReset} title="Reset">
-          <IconReset fill={colors.light.primary} />
-        </button>
-
-        <button
-          class="control-button"
-          on:click={handleRandomize}
-          disabled={isGameRunning}
-          title="Randomize"
-        >
-          <IconRandomize
-            fill={isGameRunning
-              ? colors.light.primaryDimmed
-              : colors.light.primary}
-            w="24"
-            h="24"
-          />
-        </button>
-
-        <button
-          class="control-button"
-          on:click={handleCleanBoard}
-          disabled={isGameRunning}
-          title="Clean the Board"
-        >
-          <IconDelete
-            fill={isGameRunning
-              ? colors.light.primaryDimmed
-              : colors.light.primary}
-            w="24"
-            h="24"
-          />
-        </button>
-      </div>
-    </div>
+    <ControlBar
+      {isGameRunning}
+      bind:boardSize
+      bind:speed
+      {handlePlay}
+      {handlePause}
+      {handleReset}
+      {handleRandomize}
+      {handleCleanBoard}
+    />
 
     <div class="board-layout">
       <Board bind:boardMatrix />

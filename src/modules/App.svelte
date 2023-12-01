@@ -26,6 +26,7 @@
   import Board from "./Board/Board.svelte";
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
   import ControlBar from "./ControlBar/ControlBar.svelte";
+  import DrawerMenu from "./DrawerMenu/DrawerMenu.svelte";
 
   let count = 0;
   let show = false;
@@ -152,53 +153,13 @@
     </div>
   </div>
 
-  <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>
-    <div class="content" class:content-opened={isDrawerOpen}>
-      <div style="font-size: 22px; font-weight: bold;" class="title">
-        Explore patterns
-      </div>
-
-      <div class="subtitle">Spaceships</div>
-
-      <button
-        class="pattern-button"
-        on:click={(e) => {
-          e.stopPropagation();
-          handleDrawPattern(SupportedPatterns.Glider);
-        }}
-      >
-        <div
-          style="display: flex; justify-content: space-between; align-items: center;"
-        >
-          <div style="color: #fff;">Glider</div>
-
-          <Board boardMatrix={glider} readOnly />
-        </div>
-      </button>
-
-      <button
-        class="pattern-button"
-        on:click={(e) => {
-          e.stopPropagation();
-          handleDrawPattern(SupportedPatterns.LWSS);
-        }}
-      >
-        <div
-          style="display: flex; justify-content: space-between; align-items: center;"
-        >
-          <div style="color: #fff;">Light-weight Spaceship</div>
-
-          <Board boardMatrix={lwss} readOnly />
-        </div>
-      </button>
-    </div>
-  </div>
-
   <button class="sikret" on:click={handleClick}>
     {#if show}
       X
     {/if}
   </button>
+
+  <DrawerMenu {isDrawerOpen} {handleDrawPattern} />
 
   <div
     style={`height: 200px; position: fixed; transition: bottom 0.2s; right: 40px; bottom: ${

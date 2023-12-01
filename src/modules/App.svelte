@@ -61,7 +61,6 @@
   };
 
   $: {
-    console.log("%clog | usao", "color: #0e8dbf; margin-bottom: 5px;");
     show = count === 3;
   }
 

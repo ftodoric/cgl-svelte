@@ -36,10 +36,7 @@
         disabled={isGameRunning}
       />
 
-      <div
-        class="input-spinners"
-        style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-      >
+      <div class="input-spinners">
         <button
           on:click={() => {
             boardSize += 1;
@@ -72,10 +69,7 @@
       <IconSpeed fill="var(--primary)" />
       <input class="control-input" bind:value={speed} type="number" />
 
-      <div
-        class="input-spinners"
-        style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
-      >
+      <div class="input-spinners">
         <button
           on:click={() => {
             speed += 1;

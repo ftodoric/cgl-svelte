@@ -51,6 +51,11 @@
 .input-spinners {
   margin-left: 5px;
   width: auto !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-spinners button {

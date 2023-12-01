@@ -9,7 +9,6 @@
   import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
   import IconReset from "$lib/components/Icons/IconReset.svelte";
   import IconSpeed from "$lib/components/Icons/IconSpeed.svelte";
-  import { colors } from "../../styles/colors";
 
   export let isGameRunning: boolean;
 
@@ -28,7 +27,7 @@
 <div class="controls">
   <!-- Game Config -->
   <div class="input-group" title="Board Size">
-    <IconExpand fill={colors.light.primary} />
+    <IconExpand fill="var(--light-primary)" />
     <input
       class="control-input"
       bind:value={boardSize}
@@ -51,8 +50,8 @@
           w="10px"
           h="10px"
           fill={isGameRunning
-            ? colors.light.primaryDimmed
-            : colors.light.primary}
+            ? "var(--light-primary-dimmed)"
+            : "var(--light-primary)"}
         />
       </button>
       <button
@@ -65,15 +64,15 @@
           w="10px"
           h="10px"
           fill={isGameRunning
-            ? colors.light.primaryDimmed
-            : colors.light.primary}
+            ? "var(--light-primary-dimmed)"
+            : "var(--light-primary)"}
         />
       </button>
     </div>
   </div>
 
   <div class="input-group" style="margin-left: 20px;" title="Game Speed">
-    <IconSpeed fill={colors.light.primary} />
+    <IconSpeed fill="var(--light-primary)" />
     <input class="control-input" bind:value={speed} type="number" />
 
     <div
@@ -86,14 +85,14 @@
         }}
         style="transform: rotate(180deg);"
       >
-        <IconArrow w="10px" h="10px" fill={colors.light.primary} />
+        <IconArrow w="10px" h="10px" fill="var(--light-primary)" />
       </button>
       <button
         on:click={() => {
           speed -= 1;
         }}
       >
-        <IconArrow w="10px" h="10px" fill={colors.light.primary} />
+        <IconArrow w="10px" h="10px" fill="var(--light-primary)" />
       </button>
     </div>
   </div>
@@ -106,14 +105,14 @@
       title={isGameRunning ? "Pause" : "Play"}
     >
       {#if isGameRunning}
-        <IconPause fill={colors.light.primary} w="20" h="20" />
+        <IconPause fill="var(--light-primary)" w="20" h="20" />
       {:else}
-        <IconPlay fill={colors.light.primary} w="20" h="20" />
+        <IconPlay fill="var(--light-primary)" w="20" h="20" />
       {/if}
     </button>
 
     <button class="control-button" on:click={handleReset} title="Reset">
-      <IconReset fill={colors.light.primary} />
+      <IconReset fill="var(--light-primary)" />
     </button>
 
     <button
@@ -123,7 +122,9 @@
       title="Randomize"
     >
       <IconRandomize
-        fill={isGameRunning ? colors.light.primaryDimmed : colors.light.primary}
+        fill={isGameRunning
+          ? "var(--light-primary-dimmed)"
+          : "var(--light-primary)"}
         w="24"
         h="24"
       />
@@ -136,7 +137,9 @@
       title="Clean the Board"
     >
       <IconDelete
-        fill={isGameRunning ? colors.light.primaryDimmed : colors.light.primary}
+        fill={isGameRunning
+          ? "var(--light-primary-dimmed)"
+          : "var(--light-primary)"}
         w="24"
         h="24"
       />

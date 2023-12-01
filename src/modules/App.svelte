@@ -23,10 +23,8 @@
     saveCurrentConfig,
   } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
-  import { colors } from "../styles/colors";
   import Board from "./Board/Board.svelte";
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
-  import IconArrow from "$lib/components/Icons/IconArrow.svelte";
   import ControlBar from "./ControlBar/ControlBar.svelte";
 
   let count = 0;
@@ -124,14 +122,6 @@
   };
 </script>
 
-<svelte:head>
-  <title>Conway's Game of Life</title>
-  <meta
-    name="description"
-    content="Create your own pattern in Conway's Game of Life!"
-  />
-</svelte:head>
-
 <div class="background-container">
   <div class="central-container">
     <h1 class="game-title">Conway's Game of Life</h1>
@@ -157,7 +147,7 @@
     class:button-shifted={isDrawerOpen}
     on:click={() => (isDrawerOpen = !isDrawerOpen)}
   >
-    <IconMenu fill={colors.light.primary} w="30px" h="30px" />
+    <IconMenu fill="var(--light-primary)" w="30px" h="30px" />
   </button>
 
   <div class="drawer-menu" class:drawer-opened={isDrawerOpen}>

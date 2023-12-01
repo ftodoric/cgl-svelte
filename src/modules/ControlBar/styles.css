@@ -1,6 +1,5 @@
 .control-bar {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 
   margin: 50px 20px 0;
@@ -8,6 +7,7 @@
 
 @media screen and (max-width: 768px) {
   .control-bar {
+    flex-direction: column;
     margin-top: 20px;
   }
 }
@@ -72,6 +72,7 @@
   margin-left: 50px;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 

@@ -136,9 +136,12 @@
   if (typeof requestAnimationFrame !== "undefined") {
     for (let i = 0; i < originalString.length; i++) {
       animateChar(i);
-      setTimeout(() => {
-        letterCount[i] = 1;
-      }, i * 40);
+      setTimeout(
+        () => {
+          letterCount[i] = 1;
+        },
+        300 + i * 40
+      );
     }
   }
 </script>

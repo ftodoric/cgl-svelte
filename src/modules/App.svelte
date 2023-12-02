@@ -139,6 +139,7 @@
   // Init title animation
   if (typeof requestAnimationFrame !== "undefined") {
     for (let i = 0; i < originalString.length; i++) {
+      if (i % 3 === 0) continue;
       animateChar(i);
       setTimeout(
         () => {

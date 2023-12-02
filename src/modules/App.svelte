@@ -115,7 +115,7 @@
     else count += 1;
   };
 
-  const letterSet = "AxKhjkDfiwr".split("");
+  const letterSet = "axKhjkdfiwr".split("");
   const originalString = "Conway's Game of Life";
   const targetSet = originalString.split("");
   let letterCount = Array(originalString.length).fill(0);
@@ -128,7 +128,11 @@
       targetSet[targetIndex] = originalString[targetIndex];
       return;
     }
-    targetSet[targetIndex] = letterSet[Math.floor(Math.random() * 10)];
+    const randomPick = letterSet[Math.floor(Math.random() * 10)];
+    targetSet[targetIndex] =
+      targetIndex === 0 || targetIndex === 9 || targetIndex === 17
+        ? randomPick.toUpperCase()
+        : randomPick;
     setTimeout(() => requestAnimationFrame(() => animateChar(targetIndex)), 50);
   };
 

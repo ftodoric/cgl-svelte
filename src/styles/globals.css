@@ -4,5 +4,5 @@ html {
 
 @font-face {
   font-family: "Randy GG";
-  src: url('./fonts/RandyGGRegular.ttf') format("truetype");
+  src: url('https://cgl-svelte.vercel.app/fonts/RandyGGRegular.ttf') format("truetype");
 }

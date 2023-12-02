@@ -2,7 +2,7 @@
   import "./styles.css";
 
   import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
-  import Board from "../Board/Board.svelte";
+  import PatternButton from "./PatternButton/PatternButton.svelte";
 
   export let isDrawerOpen: boolean;
   export let handleDrawPattern: (pattern: SupportedPatterns) => void;
@@ -24,30 +24,13 @@
 
     <div class="subtitle">Spaceships</div>
 
-    <button
-      class="pattern-button"
+    <PatternButton
+      pattern={{ name: "Glider", matrix: glider }}
       on:click={handlePatternClick(SupportedPatterns.Glider)}
-    >
-      <div
-        style="display: flex; justify-content: space-between; align-items: center;"
-      >
-        <div style="color: #fff;">Glider</div>
-
-        <Board boardMatrix={glider} readOnly />
-      </div>
-    </button>
-
-    <button
-      class="pattern-button"
+    />
+    <PatternButton
+      pattern={{ name: "Light-weight Spaceship", matrix: lwss }}
       on:click={handlePatternClick(SupportedPatterns.LWSS)}
-    >
-      <div
-        style="display: flex; justify-content: space-between; align-items: center;"
-      >
-        <div style="color: #fff;">Light-weight Spaceship</div>
-
-        <Board boardMatrix={lwss} readOnly />
-      </div>
-    </button>
+    />
   </div>
 </div>

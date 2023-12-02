@@ -1,0 +1,21 @@
+.drawer-menu .pattern-button {
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--primary);
+  transition: background-color 0.3s;
+
+  width: 100%;
+  margin-top: 10px;
+  background-color: var(--surface-s1);
+  border-radius: 5px;
+}
+
+.drawer-menu button > div {
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.drawer-menu button:hover {
+  cursor: pointer !important;
+  background-color: #999 !important;
+}

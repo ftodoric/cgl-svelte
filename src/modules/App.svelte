@@ -1,13 +1,6 @@
 <script lang="ts">
   import "./styles.css";
 
-  import IconExpand from "$lib/components/Icons/IconExpand.svelte";
-  import IconSpeed from "$lib/components/Icons/IconSpeed.svelte";
-  import IconPlay from "$lib/components/Icons/IconPlay.svelte";
-  import IconPause from "$lib/components/Icons/IconPause.svelte";
-  import IconReset from "$lib/components/Icons/IconReset.svelte";
-  import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
-  import IconDelete from "$lib/components/Icons/IconDelete.svelte";
   import IconMenu from "$lib/components/Icons/IconMenu.svelte";
 
   import {
@@ -24,9 +17,9 @@
   } from "$lib/game/memory";
   import type { BoardMatrix } from "$lib/game/types";
   import Board from "./Board/Board.svelte";
-  import { SupportedPatterns, glider, lwss } from "$lib/game/cgl-patterns";
   import ControlBar from "./ControlBar/ControlBar.svelte";
   import DrawerMenu from "./DrawerMenu/DrawerMenu.svelte";
+  import type { SupportedPatterns } from "$lib/game/cgl-patterns";
 
   let count = 0;
   let show = false;
@@ -121,12 +114,43 @@
     if (count === 3) count = 0;
     else count += 1;
   };
+
+  const letterSet = "AxKhjkDfiwr".split("");
+  const originalString = "Conway's Game of Life";
+  const targetSet = originalString.split("");
+  let letterCount = Array(originalString.length).fill(0);
+  const animateChar = (targetIndex: number) => {
+    if (
+      letterCount[targetIndex] === 1 ||
+      targetSet[targetIndex] === "'" ||
+      targetSet[targetIndex] === " "
+    ) {
+      targetSet[targetIndex] = originalString[targetIndex];
+      return;
+    }
+    targetSet[targetIndex] = letterSet[Math.floor(Math.random() * 10)];
+    setTimeout(() => requestAnimationFrame(() => animateChar(targetIndex)), 50);
+  };
+
+  // Init title animation
+  if (typeof requestAnimationFrame !== "undefined") {
+    for (let i = 0; i < originalString.length; i++) {
+      animateChar(i);
+      setTimeout(() => {
+        letterCount[i] = 1;
+      }, i * 40);
+    }
+  }
 </script>
 
 <div class="background-container">
   <div class="central-container">
     <div class="game-header">
-      <h1>Conway's Game of Life</h1>
+      <h1 id="cogl-title">
+        {#each targetSet as letter}
+          {letter}
+        {/each}
+      </h1>
 
       <button
         class="menu-button"

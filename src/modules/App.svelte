@@ -120,11 +120,7 @@
   const targetSet = originalString.split("");
   let letterCount = Array(originalString.length).fill(0);
   const animateChar = (targetIndex: number) => {
-    if (
-      letterCount[targetIndex] === 1 ||
-      targetSet[targetIndex] === "'" ||
-      targetSet[targetIndex] === " "
-    ) {
+    if (letterCount[targetIndex] === 1 || targetSet[targetIndex] === " ") {
       targetSet[targetIndex] = originalString[targetIndex];
       return;
     }
@@ -139,7 +135,7 @@
   // Init title animation
   if (typeof requestAnimationFrame !== "undefined") {
     for (let i = 0; i < originalString.length; i++) {
-      if (i % 3 === 0) continue;
+      if (i !== 6 && i % 3 === 0) continue;
       animateChar(i);
       setTimeout(
         () => {

@@ -19,3 +19,7 @@
   cursor: pointer !important;
   background-color: #999 !important;
 }
+
+.pattern-button .pattern-name {
+  text-align: left;
+}

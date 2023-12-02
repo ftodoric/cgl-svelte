@@ -11,7 +11,7 @@
   <div
     style="display: flex; justify-content: space-between; align-items: center;"
   >
-    <div style="color: #fff;">{pattern.name}</div>
+    <div class="pattern-name" style="color: #fff;">{pattern.name}</div>
 
     <Board boardMatrix={pattern.matrix} readOnly />
   </div>

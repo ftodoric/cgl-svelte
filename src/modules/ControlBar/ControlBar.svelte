@@ -9,12 +9,15 @@
   import IconRandomize from "$lib/components/Icons/IconRandomize.svelte";
   import IconReset from "$lib/components/Icons/IconReset.svelte";
   import IconSpeed from "$lib/components/Icons/IconSpeed.svelte";
+  import type { BoardMatrix } from "$lib/game/types";
+  import { getIsBoardEmpty } from "$lib/game/mechanics";
 
   export let isGameRunning: boolean;
 
   // Config
   export let boardSize: number;
   export let speed: number;
+  export let boardMatrix: BoardMatrix;
 
   // Controls
   export let handlePlay: () => void;
@@ -22,6 +25,10 @@
   export let handleReset: () => void;
   export let handleRandomize: () => void;
   export let handleCleanBoard: () => void;
+
+  $: isBoardEmpty = getIsBoardEmpty(boardMatrix);
+
+  $: isCleanAllDisabled = isGameRunning || isBoardEmpty;
 </script>
 
 <div class="control-bar">
@@ -94,12 +101,21 @@
     <button
       class="control-button"
       on:click={() => (isGameRunning ? handlePause() : handlePlay())}
+      disabled={isBoardEmpty}
       title={isGameRunning ? "Pause" : "Play"}
     >
       {#if isGameRunning}
-        <IconPause fill="var(--primary)" w="20" h="20" />
+        <IconPause
+          fill={isBoardEmpty ? "var(--primary-dimmed)" : "var(--primary)"}
+          w="20"
+          h="20"
+        />
       {:else}
-        <IconPlay fill="var(--primary)" w="20" h="20" />
+        <IconPlay
+          fill={isBoardEmpty ? "var(--primary-dimmed)" : "var(--primary)"}
+          w="20"
+          h="20"
+        />
       {/if}
     </button>
 
@@ -123,11 +139,11 @@
     <button
       class="control-button"
       on:click={handleCleanBoard}
-      disabled={isGameRunning}
+      disabled={isCleanAllDisabled}
       title="Clean the Board"
     >
       <IconDelete
-        fill={isGameRunning ? "var(--primary-dimmed)" : "var(--primary)"}
+        fill={isCleanAllDisabled ? "var(--primary-dimmed)" : "var(--primary)"}
         w="24"
         h="24"
       />

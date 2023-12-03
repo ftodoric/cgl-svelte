@@ -30,7 +30,7 @@ export const getNextBoardMatrix = (boardMatrix: BoardMatrix) =>
 export const getRandomBoardMatrix = (boardSize: number) =>
   Array.from({ length: boardSize }, () =>
     Array.from({ length: boardSize }, () =>
-      Math.random() < 0.3 ? true : false
+      Math.random() < 0.15 ? true : false
     )
   );
 
@@ -72,4 +72,8 @@ export const getBoardMatrixWithPattern = (
   }
 
   return generatedBoardMatrix;
+};
+
+export const getIsBoardEmpty = (boardMatrix: BoardMatrix): boolean => {
+  return boardMatrix.every((row) => row.every((cell) => !cell));
 };

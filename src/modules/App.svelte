@@ -5,6 +5,7 @@
 
   import {
     getBoardMatrixWithPattern,
+    getIsBoardEmpty,
     getNextBoardMatrix,
     getRandomBoardMatrix,
   } from "$lib/game/mechanics";
@@ -44,6 +45,9 @@
 
   // Game iteration
   const updateBoard = () => {
+    // Stop the game if all cells die
+    if (getIsBoardEmpty(boardMatrix)) isGameRunning = false;
+
     if (!isGameRunning) return;
 
     boardMatrix = getNextBoardMatrix(boardMatrix);
@@ -167,6 +171,7 @@
 
     <ControlBar
       {isGameRunning}
+      {boardMatrix}
       bind:boardSize
       bind:speed
       {handlePlay}

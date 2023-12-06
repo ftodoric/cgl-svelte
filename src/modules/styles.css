@@ -1,8 +1,10 @@
+:root {
+  background-color: var(--surface-s0);
+  padding: var(--p-sm);
+}
+
 .background-container {
   min-height: 100vh;
-  background-color: var(--surface-s0);
-
-  padding: var(--p-sm);
 }
 
 .central-container {

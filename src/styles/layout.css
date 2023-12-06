@@ -1,3 +1,6 @@
 :root {
+  --p-sm: 10px;
+  --p-md: 20px;
+
   --drawer-width: 400px; 
 }

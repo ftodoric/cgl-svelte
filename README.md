@@ -1,6 +1,6 @@
 # Conway's Game of Life
 
-This is a simple implementation of the Conway's Game of Life. The app is built using [SvelteKit](https://kit.svelte.dev/).
+This is a simple implementation of the Conway's Game of Life. App is built using [SvelteKit](https://kit.svelte.dev/).
 
 ## Developing
 

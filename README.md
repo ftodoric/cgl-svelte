@@ -4,7 +4,7 @@ This is a simple implementation of the Conway's Game of Life. App is built using
 
 ## Developing
 
-Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install` (or `yarn`), start a development server:
 
 ```bash
 npm run dev

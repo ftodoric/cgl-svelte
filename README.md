@@ -1,4 +1,4 @@
-# Conway's Game of Lifes
+# Conway's Game of Life
 
 This is a simple implementation of Conway's Game of Life. The app is built using [SvelteKit](https://kit.svelte.dev/).
 

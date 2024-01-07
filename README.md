@@ -13,6 +13,8 @@ npm run dev
 npm run dev -- --open
 ```
 
+All ideas, enhancements, and bugs are specified and discussed using GitHub issues.
+
 ## Building
 
 To create a production version of your app:

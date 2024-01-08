@@ -1,6 +1,6 @@
 # Conway's Game of Life
 
-This is a simple implementation of Conway's Game of Life. The app is built using [SvelteKit](https://kit.svelte.dev/).
+This is a simple implementation of Conway's Game of Life. The app is built using [SvelteKit](https://kit.svelte.dev/). This project is used as a learning ground for the Svelte framework.
 
 ## Developing
 
@@ -13,7 +13,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-All ideas, enhancements, and bugs are specified and discussed using GitHub issues.
+All new ideas, enhancements, and bugs are specified and discussed using GitHub issues.
 
 ## Building
 
